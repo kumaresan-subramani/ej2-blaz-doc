@@ -1,2 +1,1 @@
-# ej2-blaz-doc
-testing for ci
+Repository for Essential JS 2 Documentation for ASP .NET Core Razor Components
