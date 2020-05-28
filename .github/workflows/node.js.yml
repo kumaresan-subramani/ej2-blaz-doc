@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -29,11 +29,12 @@ jobs:
       with:
           MY_ENV_VAR: 'my value'
           check: ${{ secrets.GITLAPUSER }}
+          super_secret: ${{ secrets.token }}
 
     - name: Printenv
       run: |
           echo 'The selected color is' $MY_ENV_VAR
-          echo 'The selected color is' $check
+          echo 'The selected color is' $super_secret
    
     - run: npm i
     - run: npm run test
