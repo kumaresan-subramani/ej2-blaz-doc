@@ -6,7 +6,7 @@ description: "Learn about the Syncfusion web component's accessibility usage and
 
 <!-- markdownlint-disable MD024 -->
 
-## Getting Started with Essential JS 2 for Razor Components in .NET Core CLI
+# Getting Started with Essential JS 2 for Razor Components in .NET Core CLI
 
 This article provides a step-by-step introduction to configure Essential JS 2 setup, build and publish a simple .NET Core Razor Components web application using the [.Net Core CLI](https://visualstudio.microsoft.com/vs/preview/).
 
