@@ -36,16 +36,16 @@ jobs:
           echo 'The selected color is' $MY_ENV_VAR
           echo 'The selected color is' $super_secret
    
-    - name: Publish
+    - name: Install
       run: npm i
       
-    - run: npm run test -- --reporter=junit -o ./reports/junit/test.xml
+    - run: npm test -- --reporter=junit -o ./reports/junit/test.xml
     
     - name: check report
       run: curl "https://api.check-run-reporter.com/api/v1/submissions" \
             --user token:ae2c14e5-03ad-404f-a54c-267ecaab9bf2 \
             -X POST \
-             -F report=@"./reports/junit.xml" \
+             -F report=@"./reports/junit/test.xml" \
               -F label="Unit Tests" \
                -F sha="$CIRCLE_SHA1" \
                 -F root="$(pwd)
