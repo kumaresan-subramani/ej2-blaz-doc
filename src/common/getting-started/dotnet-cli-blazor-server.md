@@ -4,7 +4,6 @@
 
 This article provides a step-by-step introduction to configure Syncfusion Blazor setup, build and run a simple Blazor Server application using the [.NET Core CLI](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-
 > **Note:** Starting with version 17.4.0.39 (2019 Volume 4), you need to include a valid license key (either paid or trial key) within your applications. Please refer to this [help topic](https://help.syncfusion.com/common/essential-studio/licensing/license-key#blazor) for more information.
 
 ## Prerequisites
@@ -14,15 +13,15 @@ This article provides a step-by-step introduction to configure Syncfusion Blazor
 ## Create a Blazor Server project using .NET Core CLI
 
 1. Run the following command line to create a new Blazor Server application.
-    
+  
     ```bash
         dotnet new blazorserver -o WebApplication1
         cd WebApplication1
     ```
 
-## Importing Syncfusion Blazor component in the application
+   Importing Syncfusion Blazor component in the application
 
-2. Now, add **Syncfusion.EJ2.Blazor** NuGet package to the new application using below command line. 
+2. Now, add **Syncfusion.EJ2.Blazor** NuGet package to the new application using below command line.
 
     ```bash
         dotnet add package Syncfusion.EJ2.Blazor -v '{:nuget-version:}'
@@ -33,7 +32,7 @@ This article provides a step-by-step introduction to configure Syncfusion Blazor
 
 4. Open **~/_Imports.razor** file and import the `Syncfusion.EJ2.Blazor`.
 
-    ```csharp
+   ```csharp
     @using Syncfusion.EJ2.Blazor
     @using Syncfusion.EJ2.Blazor.Calendars
     ```
