@@ -21,11 +21,6 @@ This article provides a step-by-step introduction to configure Syncfusion Blazor
 
 2. Once project templates installed, run the following command line to create a new Blazor WebAssembly application.
 
-```bash
-        dotnet new blazorwasm -o WebApplication1
-        cd WebApplication1
-    ```
-
 ## Importing Syncfusion Blazor component in the application
 
 1. Now, add **Syncfusion.EJ2.Blazor** NuGet package to the new application using below command line.
