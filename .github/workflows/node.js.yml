@@ -47,7 +47,7 @@ jobs:
     - name: Install
       run: npm i
       
-    - run: npm test -- --reporter=junit -o ./reports/junit/test.xml
+    - run: npm run test
     
     - name: check report
       run: curl "https://api.check-run-reporter.com/api/v1/submissions" \
