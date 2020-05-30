@@ -39,6 +39,7 @@ jobs:
     
     - name: Reports gen
       uses: check-run-reporter/action@master
+      if: ${{ always() }}
       env:
           CHECK_RUN_REPORTER_LABEL: 'Unit Tests'
           CHECK_RUN_REPORTER_REPORT: 'reports/junit/*.xml'
@@ -50,6 +51,7 @@ jobs:
     - run: npm run test
     
     - name: check report
+      if: ${{ always() }}
       run: curl "https://api.check-run-reporter.com/api/v1/submissions" \
             --user token:ae2c14e5-03ad-404f-a54c-267ecaab9bf2 \
             -X POST \
