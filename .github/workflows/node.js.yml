@@ -37,7 +37,7 @@ jobs:
         # I can't find a way to make the branch name below dynamic, so we'l
         # need to remember to adjust it when working on features.
     
-    - name: Reports gen
+    - name: check-run-reporter
       uses: check-run-reporter/action@master
       if: ${{ always() }}
       env:
@@ -49,16 +49,6 @@ jobs:
       run: npm i
       
     - run: npm run test
-    
-    - name: check report
-      if: ${{ always() }}
-      run: curl "https://api.check-run-reporter.com/api/v1/submissions" \
-            --user token:ae2c14e5-03ad-404f-a54c-267ecaab9bf2 \
-            -X POST \
-             -F report=@"./reports/junit/test.xml" \
-              -F label="Unit Tests" \
-               -F sha="$CIRCLE_SHA1" \
-                -F root="$(pwd)
     
     - name: Publish
       run: npm run publish
