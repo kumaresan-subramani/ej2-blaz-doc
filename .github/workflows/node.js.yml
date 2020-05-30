@@ -30,12 +30,11 @@ jobs:
           MY_ENV_VAR: 'my value'
           check: ${{ secrets.GITLAPUSER }}
           super_secret: ${{ secrets.token }}
-    
-    - run: |
-          mkdir -p ./reports/junit/
-          cp ./example.xml ./reports/junit/
-        # I can't find a way to make the branch name below dynamic, so we'l
-        # need to remember to adjust it when working on features.
+            
+    - name: Install
+      run: npm i
+      
+    - run: npm run test
     
     - name: check-run-reporter
       uses: check-run-reporter/action@master
@@ -44,11 +43,6 @@ jobs:
           CHECK_RUN_REPORTER_LABEL: 'Unit Tests'
           CHECK_RUN_REPORTER_REPORT: 'reports/junit/*.xml'
           CHECK_RUN_REPORTER_TOKEN: ${{ secrets.CHECK_RUN_REPORTER_TOKEN }}
-       
-    - name: Install
-      run: npm i
-      
-    - run: npm run test
     
     - name: Publish
       run: npm run publish
