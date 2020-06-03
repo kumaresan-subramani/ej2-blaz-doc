@@ -27,7 +27,7 @@ gulp.task('ship-to-gitlap', function (done) {
     for (var j = 0; j < cloneRepos.length; j++) {
         var gitPath = 'https://' + user + ':' + token + `@gitlab.syncfusion.com/essential-studio/ej2-${cloneRepos[j]}-razor-docs`;
         console.log('Clone has been started...!');
-        var clone = shelljs.exec('git clone ' + gitPath + ' -b ' + branch + ' ' + './gitlapRepo', {
+        var clone = shelljs.exec('git clone ' + gitPath + ' -b ' + branch + ' ' + `./gitlapRepo/ej2-${cloneRepos[j]}-razor-docs`, {
             silent: true
         });
         if (clone.code !== 0) { 
@@ -36,7 +36,7 @@ gulp.task('ship-to-gitlap', function (done) {
         } else {
             console.log('Clone has been completed...!');
             shelljs.cp('-rf', `./src/${cloneRepos[j]}/*`, `./gitlapRepo/ej2-${cloneRepos[j]}-razor-docs/src`);
-            shelljs.cd('./gitlapRepo/ej2-${cloneRepos[j]}-razor-docs');
+            shelljs.cd(`./gitlapRepo/ej2-${cloneRepos[j]}-razor-docs`);
             shelljs.exec('git add .');
             shelljs.exec('git pull');
             shelljs.exec('git commit -m \"ci-skip(EJ2-000): source updation from github repo [ci skip]\" --no-verify');
