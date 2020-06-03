@@ -1,11 +1,24 @@
 {
-  "name": "@syncfusion/ej2-common-docs",
+  "name": "@syncfusion/ej2-razor-docs",
   "version": "1.0.0",
   "description": "Syncfusion TypeScript common documentation",
   "author": "Syncfusion Inc.",
   "license": "UNLICENSED",
   "dependencies": {
-    "@syncfusion/ej2-doc-helpers": "*"
+    "gulp": "^3.9.1",
+    "gulp-csslint": "^1.0.1",
+    "gulp-csslint-report": "^2.0.0",
+    "gulp-gzip": "^1.4.2",
+    "gulp-s3-upload": "1.6.6",
+    "lodash": "^4.17.11",
+    "markdownlint": "^0.11.0",
+    "markdown-link-extractor": "^1.2.0",
+    "markdown-spellcheck": "^1.3.1",
+    "shelljs": "^0.8.2",
+    "webpack": "4.28.4",
+    "typo-js": "^1.0.3",
+    "typescript": "^2.6.2",
+    "typography": "^0.16.17"
   },
   "config": {
     "ghooks": {
