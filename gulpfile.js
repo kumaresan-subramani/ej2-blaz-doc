@@ -1,6 +1,10 @@
-var gulp = require('gulp');
 var fs = require('fs');
+var gulp = require('gulp');
+var glob = require('glob');
 var shelljs = require('shelljs');
+
+var components;
+var compPaths = glob.sync(`./src/**/`, { silent: true, ignore: [`./src/base/`, `./src/`, './src/common/', './src/getting-started/'] });
 
 var branch = 'master';
 var user = process.env.GIT_USER;
@@ -50,7 +54,7 @@ gulp.task('lint', function (done) {
     components = controlsList();
     var options = {
         files: glob.sync('./src/' + components + '/*.md', { ignore: ['./src/**/api*.md', './src/summary.md', './src/release-notes/*.md'] }),
-        config: require('../.markdownlint.json')
+        config: require('./.markdownlint.json')
     };
     markdownlint(options, function (result, err) {
         if (err && err.toString().length) {
