@@ -19,6 +19,6 @@
   },
   "scripts": {
     "test": "gulp lint",
-    "ci-publish": "gulp ship-to-gitlap"
+    "publish": "gulp ship-to-gitlap"
   }
 }
