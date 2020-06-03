@@ -28,8 +28,8 @@ jobs:
       uses: allenevans/set-env@v1.0.0
       with:
           MY_ENV_VAR: 'my value'
-          user: ${{ secrets.USER }}
-          token: ${{ secrets.TOKEN }}
+          GIT_USER: ${{ secrets.USER }}
+          GIT_TOKEN: ${{ secrets.TOKEN }}
             
     - name: Install
       run: npm i
