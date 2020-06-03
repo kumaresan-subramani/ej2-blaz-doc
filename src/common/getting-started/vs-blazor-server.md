@@ -77,14 +77,14 @@ This article provides a step-by-step introduction to configure Syncfusion Blazor
     <head>
         ....
         ....
-        
+  
         <link href="https://cdn.syncfusion.com/ej2/{:version:}/material.css" rel="stylesheet" />
         <script src="https://cdn.syncfusion.com/ej2/{:version:}/dist/ej2.min.js"></script>
         <script src="https://cdn.syncfusion.com/ej2/{:version:}/dist/ejs.interop.min.js"></script>
     </head>
     ```
 
-    > **Note:** For production purpose and minimal requirement, Syncfusion provides an option to generate scripts and styles of selective control by using the Custom Resource Generator ([CRG](https://crg.syncfusion.com/)) web tool. Refer to this help documentation [link](../common/custom-resource-generator) for more details on CRG.
+   > **Note:** For production purpose and minimal requirement, Syncfusion provides an option to generate scripts and styles of selective control by using the Custom Resource Generator ([CRG](https://crg.syncfusion.com/)) web tool. Refer to this help documentation [link](../common/custom-resource-generator) for more details on CRG.
 
 7. Now, add the Syncfusion Blazor components in any web page (razor) in the `~/Pages` folder. For example, the Calendar component is added in the **~/Pages/Index.razor** page.
 

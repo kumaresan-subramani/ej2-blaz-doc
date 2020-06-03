@@ -64,7 +64,7 @@ Run the application.
 
 The following screenshot illustrates the output.
 
-![Grid](./images/de-culture.png) 
+![Grid](./images/de-culture.png)
 
 ## Customize the localized text
 

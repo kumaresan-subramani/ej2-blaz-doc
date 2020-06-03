@@ -1,0 +1,49 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: set environment variables
+      uses: allenevans/set-env@v1.0.0
+      with:
+          MY_ENV_VAR: 'my value'
+          GIT_USER: ${{ secrets.USER }}
+          GIT_TOKEN: ${{ secrets.TOKEN }}
+            
+    - name: Install
+      run: npm i
+      
+    - run: npm run test
+    
+#     - name: check-run-reporter
+#       uses: check-run-reporter/action@master
+#       if: ${{ always() }}
+#       env:
+#           CHECK_RUN_REPORTER_LABEL: 'Unit Tests'
+#           CHECK_RUN_REPORTER_REPORT: 'reports/junit/*.xml'
+#           CHECK_RUN_REPORTER_TOKEN: ${{ secrets.CHECK_RUN_REPORTER_TOKEN }}
+    
+    - name: Publish
+      run: npm run publish
+      if: github.event == 'push'

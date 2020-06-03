@@ -18,12 +18,11 @@ The official prerequisites to create and run an ASP.NET Core Blazor on Windows e
 
 * [.NET Core SDK 3.0 Preview](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
-
 ## Create a Razor Components in .NET Core CLI
 
 1. To create the Razor Components application, run the following command.
-    
-    ```
+  
+    ```cshtml
         dotnet new razorcomponents -o WebApplication1
         cd WebApplication1
     ```
@@ -32,7 +31,7 @@ The official prerequisites to create and run an ASP.NET Core Blazor on Windows e
 
 1. Now, add the **Syncfusion.EJ2.AspNet.Core.RazorComponents** NuGet package to the new application using below command
 
-    ```
+    ```cshtml
         dotnet add package Syncfusion.EJ2.AspNet.Core.RazorComponents
         dotnet restore
     ```
@@ -49,12 +48,12 @@ The official prerequisites to create and run an ASP.NET Core Blazor on Windows e
 
     ![import cdn](images/import-cdn.png)
 
-6. Now, add the Syncfusion Essential JS 2 components in any web page (cshtml) in the `Pages` folder. For example, the calendar component is added in the **~/Pages/Index.cshtml** page.
+5. Now, add the Syncfusion Essential JS 2 components in any web page (cshtml) in the `Pages` folder. For example, the calendar component is added in the **~/Pages/Index.cshtml** page.
 
     ```cshtml
     <EjsCalendar ID="test"></EjsCalendar>
     ```
 
-7. Run `dotnet run` command to run the application. The Essential JS 2 calendar component will render in the web browser.
+6. Run `dotnet run` command to run the application. The Essential JS 2 calendar component will render in the web browser.
 
     ![output](images/browser-output.png)

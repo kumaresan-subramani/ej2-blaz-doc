@@ -76,9 +76,9 @@ Refer to the following code snippet for globalization in client-side Blazor comp
         var sup3 = await Http.GetJsonAsync<object>("cldr-data/main/de/ca-gregorian.json");
         var sup4 = await Http.GetJsonAsync<object>("cldr-data/main/de/numbers.json");
         var sup5 = await Http.GetJsonAsync<object>("cldr-data/main/de/currencies.json");
- 
+
         var cldrData = new object[] { sup1, sup2, sup3, sup4, sup5 };
- 
+
         this.JsRuntime.Ejs().LoadLocaleData(data).LoadCldrData(cldrData).SetCulture("de").SetCurrencyCode("EUR");
     }
 }
