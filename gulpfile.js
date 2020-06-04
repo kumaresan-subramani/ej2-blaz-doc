@@ -14,13 +14,17 @@ var check = process.env.check;
  * Source shipping to gitlap
  */
 gulp.task('ship-to-gitlap', function (done) {
-    console.log('-------' + check);
-    console.log('------' + user);
+    console.log('---check----' + check);
+    console.log('---user---' + user);
     
-    var changes = shelljs.exec('git diff --name-only');
+    var changes = shelljs.exec(`git diff --name-only`);
+    console.log('--changes----' + changes);
+    
     var changedFileNames = changes.stdout.split('\n');
+    console.log('--changedFileNames----' + changedFileNames);
     
-    console.log('------' + changedFileNames);
+    var changes2 = shelljs.exec(`git --no-pager diff --name-only`);
+    console.log('--changes2----' + changes2);
     
     var cloneRepos = [];
     for (var i = 0; i < changedFileNames.length; i++) {
