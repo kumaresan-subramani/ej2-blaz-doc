@@ -6,7 +6,7 @@ name: Node.js CI
 on:
   pull_request:
     branches: [ master ]
-    types: [opened, edited, closed, reopened]
+#     types: [opened, edited, closed, reopened]
 
 jobs:
   build:
