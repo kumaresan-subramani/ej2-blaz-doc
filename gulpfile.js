@@ -9,13 +9,19 @@ var compPaths = glob.sync(`./src/**/`, { silent: true, ignore: [`./src/base/`, `
 var branch = 'master';
 var user = process.env.GIT_USER;
 var token = process.env.GIT_TOKEN;
-
+var check = process.env.check;
 /**
  * Source shipping to gitlap
  */
 gulp.task('ship-to-gitlap', function (done) {
+    console.log('-------' + check);
+    console.log('------' + user);
+    
     var changes = shelljs.exec('git diff --name-only');
     var changedFileNames = changes.stdout.split('\n');
+    
+    console.log('------' + changedFileNames);
+    
     var cloneRepos = [];
     for (var i = 0; i < changedFileNames.length; i++) {
         var curentRootRepo = changedFileNames[i].split('/')[1];
@@ -23,7 +29,9 @@ gulp.task('ship-to-gitlap', function (done) {
             cloneRepos.push(curentRootRepo);
         }
     }
-
+    
+    console.log('------' + cloneRepos);
+    
     for (var j = 0; j < cloneRepos.length; j++) {
         var gitPath = 'https://' + user + ':' + token + `@gitlab.syncfusion.com/essential-studio/ej2-${cloneRepos[j]}-razor-docs`;
         console.log('Clone has been started...!');
