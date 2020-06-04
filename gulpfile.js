@@ -9,11 +9,14 @@ var compPaths = glob.sync(`./src/**/`, { silent: true, ignore: [`./src/base/`, `
 var branch = 'master';
 var user = process.env.GIT_USER;
 var token = process.env.GIT_TOKEN;
-
+var check = process.env.check;
 /**
  * Source shipping to gitlap
  */
 gulp.task('ship-to-gitlap', function (done) {
+    console.log('-------' + check);
+    console.log('------' + check);
+    
     var changes = shelljs.exec('git diff --name-only');
     var changedFileNames = changes.stdout.split('\n');
     var cloneRepos = [];
