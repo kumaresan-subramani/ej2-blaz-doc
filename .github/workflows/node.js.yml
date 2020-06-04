@@ -6,7 +6,7 @@ name: Node.js CI
 on:
   pull_request:
     branches: [ master ]
-    types: [opened, closed]
+#     types: [opened, closed]
 
 jobs:
   build:
@@ -45,4 +45,4 @@ jobs:
     
     - name: Publish
       run: npm run publish
-      if: github.event.pull_request.merged == 'true'
+#       if: github.event.pull_request.merged == 'true'
