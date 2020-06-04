@@ -6,7 +6,7 @@ description: "This section helps to learn how to create the button in ASP.NET Co
 
 <!-- markdownlint-disable MD024 -->
 
-# Getting Started with Essential JS 2 for ASP.NET Core Razor Button Component in Visual Studio 2019
+# Getting Started with Essential JS 2 for ASP.NET Core Razor Buttonss Component in Visual Studio 2019
 
 This article provides a step-by-step introduction to configure Essential JS 2 setup, build and publish a simple .NET Core Razor Button Component web application using the [Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/).
 
