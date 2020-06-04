@@ -1,6 +1,6 @@
 # Syncfusion Blazor
 
-Welcome to Syncfusion Blazor!
+Welcome to Syncfusion Blazor!..
 
 Syncfusion Blazor is a modern enterprise UI components library for creating Blazor WebAssembly or Server applications. Syncfusion Blazor components library has been the built from the ground up to be lightweight, responsive, modular and touch friendly.
 
