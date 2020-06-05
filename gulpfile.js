@@ -10,6 +10,7 @@ var branch = 'master';
 var user = process.env.GIT_USER;
 var token = process.env.GIT_TOKEN;
 var user_mail = process.env.GIT_MAIL;
+var is_temp = process.env.IS_TEMP;
 /**
  * Source shipping to gitlap
  */
@@ -26,15 +27,20 @@ gulp.task('ship-to-gitlap', function (done) {
     var changedFileNames = changes.stdout.split('\n');
     console.log('--changedFileNames----' + changedFileNames);
     
+    console.log('--is_temp----' + is_temp);
+    
     var cloneRepos = [];
     for (var i = 0; i < changedFileNames.length; i++) {
         var curentRootRepo = changedFileNames[i].split('/')[1];
+//         if(curentRootRepo !='workflows'){
+//             return
+//            }
         if (curentRootRepo != undefined && curentRootRepo !='workflows') {
             cloneRepos.push(curentRootRepo);
         }
     }
     
-    console.log('--cloneRepos----' + cloneRepos);
+    console.log('--cloneRepos----' + cloneRepos);    
     
     for (var j = 0; j < cloneRepos.length; j++) {
         var gitPath = 'https://' + user + ':' + token + `@gitlab.syncfusion.com/essential-studio/ej2-${cloneRepos[j]}-razor-docs`;
