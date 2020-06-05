@@ -9,13 +9,16 @@ var compPaths = glob.sync(`./src/**/`, { silent: true, ignore: [`./src/base/`, `
 var branch = 'master';
 var user = process.env.GIT_USER;
 var token = process.env.GIT_TOKEN;
-var check = process.env.MY_ENV_VAR;
+var user_mail = process.env.GIT_MAIL;
 /**
  * Source shipping to gitlap
  */
 gulp.task('ship-to-gitlap', function (done) {
-    console.log('---check----' + check);
+    console.log('---check----' + user_mail);
     console.log('---user---' + user);
+    
+    shelljs.exec(`git config --global user.email "${user_mail}"`);
+    shelljs.exec(`git config --global user.name "${user}"`);
     
     var changes = shelljs.exec(`git diff --name-only HEAD^ HEAD`);
     console.log('--changes----' + changes);
