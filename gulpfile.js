@@ -9,7 +9,7 @@ var compPaths = glob.sync(`./src/**/`, { silent: true, ignore: [`./src/base/`, `
 var branch = 'master';
 var user = process.env.GIT_USER;
 var token = process.env.GIT_TOKEN;
-var check = process.env.check;
+var check = process.env.MY_ENV_VAR;
 /**
  * Source shipping to gitlap
  */
@@ -17,24 +17,21 @@ gulp.task('ship-to-gitlap', function (done) {
     console.log('---check----' + check);
     console.log('---user---' + user);
     
-    var changes = shelljs.exec(`git diff`);
+    var changes = shelljs.exec(`git diff --name-only HEAD^ HEAD`);
     console.log('--changes----' + changes);
     
     var changedFileNames = changes.stdout.split('\n');
     console.log('--changedFileNames----' + changedFileNames);
     
-    var changes2 = shelljs.exec(`git --no-pager diff --name-only`);
-    console.log('--changes2----' + changes2);
-    
     var cloneRepos = [];
     for (var i = 0; i < changedFileNames.length; i++) {
         var curentRootRepo = changedFileNames[i].split('/')[1];
-        if (curentRootRepo != undefined) {
+        if (curentRootRepo != undefined && curentRootRepo !='workflows') {
             cloneRepos.push(curentRootRepo);
         }
     }
     
-    console.log('------' + cloneRepos);
+    console.log('--cloneRepos----' + cloneRepos);
     
     for (var j = 0; j < cloneRepos.length; j++) {
         var gitPath = 'https://' + user + ':' + token + `@gitlab.syncfusion.com/essential-studio/ej2-${cloneRepos[j]}-razor-docs`;
