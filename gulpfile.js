@@ -17,7 +17,7 @@ gulp.task('ship-to-gitlap', function (done) {
     console.log('---check----' + check);
     console.log('---user---' + user);
     
-    var changes = shelljs.exec(`git diff`);
+    var changes = shelljs.exec(`git diff --name-only HEAD^ HEAD`);
     console.log('--changes----' + changes);
     
     var changedFileNames = changes.stdout.split('\n');
