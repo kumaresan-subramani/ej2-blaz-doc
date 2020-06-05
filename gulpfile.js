@@ -23,18 +23,15 @@ gulp.task('ship-to-gitlap', function (done) {
     var changedFileNames = changes.stdout.split('\n');
     console.log('--changedFileNames----' + changedFileNames);
     
-    var changes2 = shelljs.exec(`git --no-pager diff --name-only`);
-    console.log('--changes2----' + changes2);
-    
     var cloneRepos = [];
     for (var i = 0; i < changedFileNames.length; i++) {
         var curentRootRepo = changedFileNames[i].split('/')[1];
-        if (curentRootRepo != undefined) {
+        if (curentRootRepo != undefined && curentRootRepo !='workflows') {
             cloneRepos.push(curentRootRepo);
         }
     }
     
-    console.log('------' + cloneRepos);
+    console.log('--cloneRepos----' + cloneRepos);
     
     for (var j = 0; j < cloneRepos.length; j++) {
         var gitPath = 'https://' + user + ':' + token + `@gitlab.syncfusion.com/essential-studio/ej2-${cloneRepos[j]}-razor-docs`;
