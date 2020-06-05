@@ -9,7 +9,7 @@ var compPaths = glob.sync(`./src/**/`, { silent: true, ignore: [`./src/base/`, `
 var branch = 'master';
 var user = process.env.GIT_USER;
 var token = process.env.GIT_TOKEN;
-var check = process.env.check;
+var check = process.env.MY_ENV_VAR;
 /**
  * Source shipping to gitlap
  */
@@ -17,7 +17,7 @@ gulp.task('ship-to-gitlap', function (done) {
     console.log('---check----' + check);
     console.log('---user---' + user);
     
-    var changes = shelljs.exec(`git diff`);
+    var changes = shelljs.exec(`git diff --name-only HEAD^ HEAD`);
     console.log('--changes----' + changes);
     
     var changedFileNames = changes.stdout.split('\n');
