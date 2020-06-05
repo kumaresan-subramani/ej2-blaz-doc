@@ -6,7 +6,7 @@ name: Node.js CI
 on:
   pull_request:
     branches: [ master ]
-    types: [opened, closed]
+#     types: [opened, closed]
 #     types: [opened, edited, closed, reopened]
 
 jobs:
@@ -35,6 +35,7 @@ jobs:
           GIT_USER: ${{ secrets.USER }}
           GIT_TOKEN: ${{ secrets.TOKEN }}
           GIT_MAIL: ${{ secrets.USER_MAIL }}
+          IS_TEMP: github.event.pull_request.merged
             
     - name: Install
       run: npm i
@@ -51,4 +52,4 @@ jobs:
          GIT_USER: ${{ secrets.USER }}
          GIT_TOKEN: ${{ secrets.TOKEN }}
          check: 'hello'
-      if: github.event.pull_request.merged == 'true'
+      if: github.event.pull_request.merged == true
