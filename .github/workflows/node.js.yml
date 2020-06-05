@@ -40,13 +40,10 @@ jobs:
       
     - run: npm run test
     
-#     - name: check-run-reporter
-#       uses: check-run-reporter/action@master
-#       if: ${{ always() }}
-#       env:
-#           CHECK_RUN_REPORTER_LABEL: 'Unit Tests'
-#           CHECK_RUN_REPORTER_REPORT: 'reports/junit/*.xml'
-#           CHECK_RUN_REPORTER_TOKEN: ${{ secrets.CHECK_RUN_REPORTER_TOKEN }}
+    - name: Get changed files
+      run: |
+          git diff --name-only HEAD^ HEAD
+        
     
     - name: Publish
       run: npm run publish
