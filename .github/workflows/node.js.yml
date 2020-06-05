@@ -34,6 +34,7 @@ jobs:
           MY_ENV_VAR: 'my value'
           GIT_USER: ${{ secrets.USER }}
           GIT_TOKEN: ${{ secrets.TOKEN }}
+          GIT_MAIL: ${{ secrets.USER_MAIL }}
             
     - name: Install
       run: npm i
@@ -44,7 +45,6 @@ jobs:
       run: |
           git diff --name-only HEAD^ HEAD
         
-    
     - name: Publish
       run: npm run publish
       env:
