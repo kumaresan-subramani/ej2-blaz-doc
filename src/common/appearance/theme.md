@@ -1,34 +1,65 @@
-# Themes
+# Theming
 
-The Syncfusion Blazor library provides the following list of built-in themes:
+The Syncfusion JavaScript library has provided the below list of in-built themes,
 
 1. Google’s Material
 2. Microsoft Office’s Fabric
 3. Bootstrap
-4. Bootstrap 4
-5. High Contrast
+4. High Contrast
 
-> The Syncfusion Bootstrap theme is designed based on `Bootstrap v3`, however it can be compatible in `Bootstrap v4` applications also.
+> The Syncfusion Bootstrap theme is designed based on `Bootstrap v3`, however it can be compatible in `Bootstrap v4` applications.
 
-Themes are shipped as individual and combined CSS files. The combined and individual CSS files can be referred from the following mentioned cdn links:
+Themes are shipped as individual and combined CSS files. Combined CSS file can be referred from the npm package `@syncfusion/ej2` and individual CSS files are available within same control repository’s `style` folder. In ej2 npm packages, we have shipped both CSS and SCSS files for all controls.
 
 Referring All controls CSS
 
-```html
- <link href="https://cdn.syncfusion.com/ej2/{:version:}/material.css" rel="stylesheet" />
+```css
+@import "./node_modules/@syncfusion/ej2/<theme_name>.css";
 ```
 
-You can get the individual theme from individual packages.
+Referring All controls SCSS
 
-Referring individual control from individual package.
+```scss
+@import "ej2/<theme_name>.scss";
+```
 
-```html
- <link href="https://cdn.syncfusion.com/ej2/{:version:}/ej2-buttons/styles/material.css" rel="stylesheet" />
+## Referring individual control theme
+
+We can get the individual theme from [individual package](../deployment#anatomy-of-npm-packages) or from ej2 package.
+
+Referring individual control from individual package
+
+```scss
+@import "<dependent-package>/<dependent-control>/<theme_name>.scss";
+@import "ej2-buttons/styles/button/<theme_name>.scss";
+```
+
+**Example:**
+
+```scss
+@import "ej2-base/styles/material.scss";
+@import "ej2-buttons/styles/button/material.scss";
+```
+
+> `ej2-base` is common dependent package for all Syncfusion JavaScript control styles. so, it needs to be added first in the import statement.
+
+Referring individual control from ej2 package
+
+```scss
+@import "ej2/<dependent-control>/<theme_name>.scss";
+@import "ej2/button/<theme_name>.scss";
+```
+
+**Example:**
+
+```scss
+@import "ej2/base/material.scss";
+@import "ej2/button/material.scss";
 ```
 
 ## Common Variables
 
-The following list of common variables are used in the Syncfusion Blazor library themes for all UI controls. You can change these variables to customize the corresponding theme.
+The below list of common variables are used in the Syncfusion JavaScript library themes for all UI controls. You can change these variables to customize the corresponding theme.
 
 ### Google's Material
 
@@ -154,32 +185,6 @@ The following list of common variables are used in the Syncfusion Blazor library
 | `$brand-warning-font` | ![#8a6d3b](https://ej2.syncfusion.com/download/documentation/svg/8a6d3b.svg) `#8a6d3b` |
 | `$brand-danger-font` |![#a94442](https://ej2.syncfusion.com/download/documentation/svg/a94442.svg) `#a94442` |
 | `$base-font` | ![#000000](https://ej2.syncfusion.com/download/documentation/svg/000000.svg) `#000000` |
-
-### Bootstrap 4
-
-| Name | Value |
-| ------------- | ------------- |
-| `$white` | ![#fff](https://ej2.syncfusion.com/download/documentation/svg/fff.svg) `#fff` |
-| `$gray-100` | ![#f8f9fa](https://ej2.syncfusion.com/download/documentation/svg/f8f9fa.svg) `#f8f9fa` |
-| `$gray-200` | ![#e9ecef](https://ej2.syncfusion.com/download/documentation/svg/e9ecef.svg) `#e9ecef` |
-| `$gray-300` | ![#dee2e6](https://ej2.syncfusion.com/download/documentation/svg/dee2e6.svg) `#dee2e6` |
-| `$gray-400` | ![#ced4da](https://ej2.syncfusion.com/download/documentation/svg/ced4da.svg) `#ced4da` |
-| `$gray-500` | ![#adb5bd](https://ej2.syncfusion.com/download/documentation/svg/adb5bd.svg) `#adb5bd` |
-| `$gray-600` | ![#6c757d](https://ej2.syncfusion.com/download/documentation/svg/6c757d.svg) `#6c757d` |
-| `$gray-700` | ![#495057](https://ej2.syncfusion.com/download/documentation/svg/495057.svg) `#495057` |
-| `$gray-800` | ![#343a40](https://ej2.syncfusion.com/download/documentation/svg/343a40.svg) `#343a40` |
-| `$gray-900` | ![#212529](https://ej2.syncfusion.com/download/documentation/svg/212529.svg) `#212529` |
-| `$black` | ![#000](https://ej2.syncfusion.com/download/documentation/svg/000.svg) `#000` |
-| `$blue` | ![#007bff](https://ej2.syncfusion.com/download/documentation/svg/007bff.svg) `#007bff` |
-| `$indigo` | ![#6610f2](https://ej2.syncfusion.com/download/documentation/svg/6610f2.svg) `#6610f2` |
-| `$purple` | ![#6f42c1](https://ej2.syncfusion.com/download/documentation/svg/6f42c1.svg) `#6f42c1` |
-| `$pink` | ![#e83e8c](https://ej2.syncfusion.com/download/documentation/svg/e83e8c.svg) `#e83e8c` |
-| `red` | ![#dc3545](https://ej2.syncfusion.com/download/documentation/svg/dc3545.svg) `#dc3545` |
-| `$orange` | ![#fd7e14](https://ej2.syncfusion.com/download/documentation/svg/fd7e14.svg) `#fd7e14` |
-| `$yellow` | ![#ffc107](https://ej2.syncfusion.com/download/documentation/svg/ffc107.svg) `#ffc107` |
-| `$green` | ![#28a745](https://ej2.syncfusion.com/download/documentation/svg/28a745.svg) `#28a745` |
-| `$teal` | ![#20c997](https://ej2.syncfusion.com/download/documentation/svg/20c997.svg) `#20c997` |
-| `$cyan` | ![#17a2b8](https://ej2.syncfusion.com/download/documentation/svg/17a2b8.svg) `#17a2b8` |
 
 ### High Contrast
 

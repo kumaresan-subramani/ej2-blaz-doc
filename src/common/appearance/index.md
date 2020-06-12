@@ -1,8 +1,9 @@
 # Overview
 
-The Syncfusion Blazor library styles are developed under the SCSS environment with `base64` embed font icons. A list of key features are described as follows.
+The Syncfusion JavaScript library styles are developed under the SCSS environment with `base64` embed font icons. The list of key features are described in the below topics.
 
 ## Key Features
 
-* [Theming](./appearance/theme)
-* [Theme Studio](./appearance/theme-studio)
+* [Theming](./theme)
+* [Icons Library](./icons)
+* [Theme Studio](./theme-studio)

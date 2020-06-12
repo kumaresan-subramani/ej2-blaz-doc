@@ -1,85 +1,78 @@
 # Localization
 
-Localization library allows you to localize the text content of the Syncfusion Blazor control.
+Localization library allows you to localize the text content of the Syncfusion JavaScript UI control.
 
 ## Loading translations
 
-The following example demonstrates the Grid in `Deutsch` culture. Here, the `LoadLocaleData` method is used to load the `locale.json` file and the `SetCulture` method is set to the culture of the Component.
+To load translation object in your application use [`load`](../api/base/l10n/#load) function of `L10n` class.
 
-To set different culture, other than `English`, follow the below steps:
+{% tab template="common/locale", es5Template="locale" %}
 
-## Syncfusion locale text
+```typescript
+import { L10n } from '@syncfusion/ej2-base';
+import { Grid, Group, Page } from '@syncfusion/ej2-grids';
+import { data } from './datasource.ts';
 
-Syncfusion `ej2-locale` repository contains currently supported locale translations for Syncfusion Blazor components in multiple languages.
+Grid.Inject(Group, Page);
 
-* Download the required locale files to render the Blazor component with specified locale.
-
-* Download the locale files of Blazor components from [GitHub](https://github.com/syncfusion/ej2-locale).
-
-* After downloading the `ej2-locale` repository, copy the required locale files into the `wwwroot` folder.
-
-* By default, the `ej2-locale` repository contains the localized text for static text present in components such as button, placeholder, tooltip, and more.
-
-### Loading translation for Blazor Server application
-
-The locale object can be loaded in the `./pages/index.razor` file using the following code snippet. The current locale can be changed for all Syncfusion Blazor components by invoking the `SetCulture` function with desired culture name.
-
-```csharp
-@functions {
-    [Inject]
-    protected IJSRuntime JsRuntime { get; set; }
-
-     protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        this.JsRuntime.Ejs().LoadLocaleData("wwwroot/de.json").SetCulture("de");
+L10n.load({
+    'de-DE': {
+        'grid': {
+            'EmptyRecord': 'Keine Aufzeichnungen angezeigt',
+            'GroupDropArea': 'Ziehen Sie einen Spaltenkopf hier, um die Gruppe ihre Spalte',
+            'UnGroup': 'Klicken Sie hier, um die Gruppierung aufheben',
+            'EmptyDataSourceError': 'DataSource darf bei der Erstauslastung nicht leer sein, da Spalten aus der dataSource im AutoGenerate Spaltenraster',
+            'Item': 'Artikel',
+            'Items': 'Artikel'
+        },
+        'pager': {
+            'currentPageInfo': '{0} von {1} Seiten',
+            'totalItemsInfo': '({0} Beiträge)',
+            'firstPageTooltip': 'Zur ersten Seite',
+            'lastPageTooltip': 'Zur letzten Seite',
+            'nextPageTooltip': 'Zur nächsten Seite',
+            'previousPageTooltip': 'Zurück zur letzten Seit',
+            'nextPagerTooltip': 'Zum nächsten Pager',
+            'previousPagerTooltip': 'Zum vorherigen Pager'
+        }
     }
-}
+});
+
+let grid: Grid = new Grid({
+    dataSource: data,
+    locale: 'de-DE',
+    allowGrouping: true,
+    allowPaging: true,
+    pageSettings: { pageSize: 6 },
+    columns: [
+        { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120 },
+        { field: 'CustomerID', headerText: 'Customer ID', width: 150 },
+        { field: 'ShipCity', headerText: 'Ship City', width: 150 },
+        { field: 'ShipName', headerText: 'Ship Name', width: 150 }
+    ],
+    height: 210
+});
+grid.appendTo('#Grid');
+
+```
+{% endtab %}
+
+## Changing current locale
+
+Current locale can be changed for all the Syncfusion JavaScript UI controls in your application by invoking
+ [`setCulture`](../api/base/staticFunctions#setculture) function with your desired culture name.
+
+```typescript
+import {L10n, setCulture} from '@syncfusion/ej2-base';
+L10n.load({
+    'fr-BE': {
+       'Button': {
+             'id': 'Numéro de commande',
+             'date':'Date de commande'
+         }
+     }
+});
+setCulture('fr-BE');
 ```
 
-### Localization translation for Blazor WebAssembly application
-
-Inject the `HttpClient` module in the `index.razor` file using the following code snippet in the `pages/index.razor` file.
-
-```csharp
-@inject HttpClient Http;
-```
-
-To load locale object, read it using the `http` request, store using variable, and then load it as shown in the following code snippet in `./pages/index.razor`. The current locale can be changed for all Syncfusion Blazor components in your application by invoking the `SetCulture` function with desired culture name.
-
-```csharp
-@functions {
-    [Inject]
-    protected IJSRuntime JsRuntime { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        var Locale = await Http.GetJsonAsync<object>("ej2-locale/src/de.json");
-        this.JsRuntime.Ejs().LoadLocaleData(Locale).SetCulture("de");
-    }
-}
-```
-
-Run the application.
-
-The following screenshot illustrates the output.
-
-![Grid](./images/de-culture.png)
-
-## Customize the localized text
-
-* You can change the localized text of a particular component by editing the `wwwroot/ej2-locale/src/{{locale name}}.json` file.
-
-* In the following code, modify the localized text of `GroupDropArea` in `de` culture.
-
-[`wwwroot/ej2-locale/src/de.json`]
-
-```csharp
-{
-  "de": {
-    "grid": {
-        "GroupDropArea": "Ziehen Sie eine Spaltenberschrift hierher, um die Spalte zu gruppieren",
-    }
-  }
-}
-```
+>Note: Before changing a culture globally, ensure that locale text for the concerned culture is loaded through `L10n.load` function.
