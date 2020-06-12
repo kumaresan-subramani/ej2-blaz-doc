@@ -55,6 +55,7 @@ let grid: Grid = new Grid({
 grid.appendTo('#Grid');
 
 ```
+
 {% endtab %}
 
 ## Changing current locale
