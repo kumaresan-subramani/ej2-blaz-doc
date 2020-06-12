@@ -1,10 +1,10 @@
 # Icons Library
 
-The Syncfusion JavaScript library provides the set of `base64` formatted font icons, that can be utilized in the web application.
+The Syncfusion Blazor library provides the set of `base64` formatted font icons, that can be utilized in the web application.
 
-## Steps to use icons library
+## Steps to Use Icon
 
-1. Add the class name `e-icons` to the HTML element which needs to render the icon. This class contains the font-family and common property of font icons.
+1. Add a class `e-icons` to the HTML element that shows the icon. This class contains the font-family and common property of the font icons.
 
 2. Add the icon class with corresponding icon content from the [available icons](#available-icons). For example, the below code snippet represents the search icon class.
 
@@ -20,59 +20,27 @@ The Syncfusion JavaScript library provides the set of `base64` formatted font ic
     <span class="e-icons e-search"></span>
     ```
 
-    The below code snippet represents the complete example of icon usage.
+4. You can add client-side resource through CDN or local npm package in the `<head>` element of the `~/wwwroot/index.html` page.
 
     ```html
-    <!doctype html>
-    <html>
-        <head>
-            <title>Essential JS 2 </title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"  />
-            <link href="./node_modules/@syncfusion/ej2/material.css" rel="stylesheet" />
-            <style>
-                .e-search:before{
-                    content:'\e993';
-                }
-                .e-upload:before{
-                    content: '\e725';
-                }
-                .e-font:before{
-                    content: '\e34c';
-                }
-            </style>
-        </head>
-
-        <body>
-            <div class="icons">
-                <ul>
-                    <li><span class="e-icons e-search"></span></li>
-                    <li><span class="e-icons e-settings"></span></li>
-                    <li><span class="e-icons e-upload"></span></li>
-                    <li><span class="e-icons e-font"></span></li>
-                </ul>
-            </div>
-        </body>
-    </html>
+    <head>
+        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+    </head>
     ```
 
-## Customization
+    The below code snippet represents the complete example of icon usage in `~/Pages/Index.razor`.
 
-The Syncfusion's icon library can be customize its color and size by overriding the `e-icons` class.
-
-```html
-<!doctype html>
-<html>
-    <head>
-        <title>Essential JS 2 </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"  />
-        <link href="./node_modules/@syncfusion/ej2/material.css" rel="stylesheet" />
+    ```csharp
+        <div class="icons">
+            <ul>
+                <li><span class="e-icons e-search"></span></li>
+                <li><span class="e-icons e-upload"></span></li>
+                <li><span class="e-icons e-font"></span></li>
+            </ul>
+        </div>
         <style>
-            .e-icons{
-                color: #00ffff;
-                font-size: 26px;
-            }
             .e-search:before{
-                content: '\e993';
+                content:'\e993';
             }
             .e-upload:before{
                 content: '\e725';
@@ -81,23 +49,40 @@ The Syncfusion's icon library can be customize its color and size by overriding 
                 content: '\e34c';
             }
         </style>
-    </head>
-    <body>
-        <div class="icons">
-            <ul>
-                <li><span class="e-icons e-search"></span></li>
-                <li><span class="e-icons e-settings"></span></li>
-                <li><span class="e-icons e-upload"></span></li>
-                <li><span class="e-icons e-font"></span></li>
+    ```
+
+## Customization
+
+The Syncfusion Blazor icon library can be customize its color, size by overriding the `e-icons` class.
+
+```csharp
+    <style>
+        .e-icons{
+            color: #00ffff;
+            font-size: 26px;
+        }
+        .e-search:before{
+            content: '\e993';
+        }
+        .e-upload:before{
+            content: '\e725';
+        }
+        .e-font:before{
+            content: '\e34c';
+        }
+    </style>
+    <div class="icons">
+        <ul>
+            <li><span class="e-icons e-search"></span></li>
+            <li><span class="e-icons e-upload"></span></li>
+            <li><span class="e-icons e-font"></span></li>
             </ul>
-        </div>
-    </body>
-</html>
+    </div>
 ```
 
 ## Available Icons
 
-The complete pack of Syncfusion JavaScript icons are listed in the below table. The corresponding icon content can be referred in the content section.
+The complete pack of Syncfusion Blazor icons are listed in the below table. The corresponding icon content can be referred in the content section.
 
 <!-- markdownlint-disable MD033 -->
 

@@ -1,54 +1,23 @@
-# Browser Support
+# Browsers Support
 
-The Syncfusion Essential JS 2 components are supported only in modern browsers. This includes the following versions.
+Syncfusion Essential JS 2 for Blazor support all modern web browsers.
 
-|    Chrome    |    Firefox    |    Opera     |    Edge    |    IE      |    Safari    |    IOS    |    Android    |    Windows   Mobile    |
-|--------------|---------------|--------------|------------|------------|--------------|-----------|---------------|------------------------|
-|   63+    |    58+     |    50+    |    13 +    |    11 +    |    9 +       |    9 +    |    4.4 +      |    IE 11 +             |
+## Blazor WebAssembly
 
-## Required Polyfills
+|    Chrome    |    Firefox    |    Opera     |    Edge    |    Safari    |    IOS    |    Android    |    Microsoft Internet Explorer    |
+|--------------|---------------|--------------|------------|------------|--------------|-----------|-----------|
+|    Latest    |    Latest     |    Latest    |    Latest    |    Latest       |    Latest    |    Latest      |    Not Supported†    |
 
-The following polyfills are required to run Essential JS 2 components in each browser.
+> †Microsoft Internet Explorer doesn't support `WebAssembly`. So, Blazor WebAssembly doesn't support with Internet Explorer.
 
-|    Browser                                             |    Polyfills      |
-|:--------------------------------------------------------:|:-------------------:|
-|    Chrome(latest), Firefox(latest), Opera(latest), Edge, Safari 9+    |    NONE           |
-|    IE 11                                               |    ES6 Promise    |
+## Blazor Server
 
-The Syncfusion Essential JS 2 components are supported in IE 11 browser with ES6 Promise polyfill.
+|    Chrome    |    Firefox    |    Opera     |    Edge    |    Safari    |    IOS    |    Android    |    Microsoft Internet Explorer    |
+|--------------|---------------|--------------|------------|------------|--------------|-----------|-----------|
+|    Latest    |    Latest     |    Latest    |    Latest    |    Latest       |    Latest    |    Latest      |    11+    |
 
-## Using CDNs
+> †Additional polyfills are required. Refer this [documentation](common/how-to/render-blazor-server-app-in-ie) to add the polyfills in Blazor server application.
 
-To add ES6 Promise polyfill using CDN, include this in your HTML file.
+## See Also
 
-```typescript
-<!-- Automatically provides/replaces `Promise` if missing or broken. -->
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
-<!-- Minified version of `es6-promise-auto` below. -->
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
-```
-
-## Node.js
-
-ES6 Promise polyfill can also be installed in node.js.
-
-To install:
-
-```typescript
-yarn add es6-promise
-(or)
-npm install es6-promise
-
-```
-
-To Use:
-
-```typescript
-var Promise = require('es6-promise').Promise;
-
-```
-
-For further details, refer to the link [here](https://github.com/stefanpenner/es6-promise).
+* [Blazor browser requirements](https://docs.microsoft.com/en-us/aspnet/core/blazor/supported-platforms?view=aspnetcore-3.0)
