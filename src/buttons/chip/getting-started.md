@@ -12,7 +12,6 @@ This section briefly explains about how to include a simple Chip in your ASP.NET
 
 1. Install `Syncfusion.EJ2.Blazor` NuGet package to the application by using the NuGet Package Manager.
 2. You can add the client-side resources through CDN or local npm package in the `<head>` element of the `~/wwwroot/index.html` page.
-
 ```csharp
 
 <head>
@@ -22,7 +21,6 @@ This section briefly explains about how to include a simple Chip in your ASP.NET
 </head>
 
 ```
-
 ## Adding component package to the application
 
 Open `~/_Imports.razor` file and import the `Syncfusion.EJ2.Blazor.Buttons` packages.
