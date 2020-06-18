@@ -1,6 +1,6 @@
 # Browsers Supporting
 
-Syncfusion Essential JS 2 for Blazor support all modern web browsers.
+Syncfusion Essesfddddddddddddddddddddddntial JS 2 for Blazor support all modern web browsers.
 
 ## Blazor WebAssembly
 
