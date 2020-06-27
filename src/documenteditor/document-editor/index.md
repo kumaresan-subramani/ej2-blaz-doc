@@ -1,32 +1,26 @@
 ---
 title: "Overview"
-component: "Word processor"
-description: "Word processor component for Blazor is used to compose, edit, view, and print Word (DOC, DOCX, and RTF) documents."
+component: "DocumentEditor"
+description: "Document editor for JavaScript is used to create, edit, view and print word documents."
 ---
 
 # Overview
 
-The Word processor component for Blazor is used to compose, edit, view, and print Word (DOC, DOCX, and RTF) documents in Blazor applications.
+The Document Editor component is used to create, edit, view, and print Word documents in web applications. All the user interactions and editing operations that run purely in the client-side provides much faster editing experience to the users.
 
 ## Key Features
 
-* Composes a document from scratch.
-* Opens and edits the Word (DOC, DOCX), RTF, and SFDT (Syncfusion Document Text) format files.
-* Saves and exports the documents as DOCX and SDFT at the client-side.
-* Saves and exports the documents as PDF files with Syncfusion’s DocIO library.
-* Prints the document.
-* Finds and replaces the text.
-* Allows spell checking.
-* Contains a rich set of document elements like text, table, lists, inline image, fields, bookmark, hyperlink, page number, header, and footer.
-* Contains a rich set of text, paragraph, and table formatting options.
-* Creates or updates the table of contents.
-* Contains tables.
-* Allows Undo and Redo.
-* Creates, edits, and applies paragraph and character styles.
-* Contains clipboard operations such as Cut, Copy, and Paste (with formatting).
-* Preserves the chart present in the opened Word document.
-* Restricts editing for certain regions.
-* Views the documents in read only mode.
-* Allows user interactions through mouse, touch, and keyboard.
-* Contains Intuitive UI options through context menu, dialogs, and navigation pane.
+* Opens the native `Syncfusion Document Text (*.sfdt)` format documents in the client-side.
+* Saves the documents in the client-side as `Syncfusion Document Text (*.sfdt)` and `Word document (*.docx)`.
+* Supports document elements like text, inline image, table, fields, bookmark, section, header, and footer.
+* Supports the commonly used fields like hyperlink, page number, page count, and table of contents.
+* Supports formats like text, paragraph, bullets and numbering, table, page settings, etc.
+* Provides support to create, edit, and apply paragraph and character styles.
+* Provides support to find and replace text within the document.
+* Supports all the common editing and formatting operations along with undo and redo.
+* Provides support to cut, copy, and paste rich text contents within the component. Also allows pasting simple text to and from other applications.
+* Allows user interactions like zoom, scroll, select contents through touch, mouse, and keyboard.
+* Provides intuitive UI options like context menu, dialogs, and navigation pane.
 * Localizes all the static text to any desired language.
+* Allows to create a lightweight Word viewer using module injection to view and prints Word documents.
+* Provides a server-side helper assembly to open the Word documents like DOCX, DOC, WordML, RTF, and Text, by converting it to SFDT file format.
