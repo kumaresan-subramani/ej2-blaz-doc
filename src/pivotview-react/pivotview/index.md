@@ -6,7 +6,7 @@ description: "Overview of pivot table."
 
 # Overview
 
-The **Pivot Table** component is an easily configurable and presentation-quality business control. It allows to create multi-dimensional views using pivot data source for analysing and satisfying the needs of business user.
+The **Pivot Table** component is an easily configurable and presentation-quality business control. It allows to create multi-dimensional views using pivot data source for analyzing and satisfying the needs of business user.
 
 ## Key Features
 
