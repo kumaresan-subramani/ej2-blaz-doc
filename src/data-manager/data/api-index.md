@@ -1,0 +1,5 @@
+* [`API`](data/api.md)
+* [Hide_DataManager](data/api-dataManager.md)
+* [Hide_Deferred](data/api-deferred.md)
+* [Hide_Predicate](data/api-predicate.md)
+* [Hide_Query](data/api-query.md)
