@@ -337,13 +337,13 @@ grid.toolbarClick = (args: Object) => {
 grid.excelQueryCellInfo = (args: Object) => {
         if(args.column.field == 'Freight'){
             if(args.value < 30) {
-                args.style = {backgroundColor: '#99ffcc'};
+                args.style = {backColor: '#99ffcc'};
             }
             else if(args.value < 60) {
-                args.style = {backgroundColor: '#ffffb3'};
+                args.style = {backColor: '#ffffb3'};
             }
             else {
-                args.style = {backgroundColor: '#ff704d'};
+                args.style = {backColor: '#ff704d'};
             }
         }
     }
