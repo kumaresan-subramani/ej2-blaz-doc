@@ -32,3 +32,4 @@
 * [Copy and Paste Records](gantt/how-to/copypasterecords.md)
 * [Updating row drag and dropped index position on server side](gantt/how-to/maintain-record-index.md)
 * [Add Custom Fields in the General Tab in Add/Edit Dialog](gantt/how-to/custom-field.md)
+* [Styling and Appearance](gantt/how-to/styling-and-appearance.md)
