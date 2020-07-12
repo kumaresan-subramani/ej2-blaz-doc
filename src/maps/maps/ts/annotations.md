@@ -48,7 +48,7 @@ let maps: Maps = new Maps({
 
 You can change the z-order of an annotation element using the [`zIndex`](../api/maps/annotation/#zindex-string) property.
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "annotationZOrder" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "annotationZOrder" %}
 
 ```typescript
 
@@ -79,7 +79,7 @@ let map: Maps = new Maps({
 
 You can place an annotation anywhere in gauge area by specifying pixel values to the [`x`](../api/maps/annotation/#x-number) and [`y`](../api/maps/annotation/#y-number) properties.
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "annotationPosition" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "annotationPosition" %}
 
 ```typescript
 
@@ -110,7 +110,7 @@ let map: Maps = new Maps({
 
 You can align annotations using the [`horizontalAlignment`](../api/maps/annotation/#horizontalalignment-string) and [`verticalAlignment`](../api/maps/annotation/#verticalalignment-string) properties.
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "annotationAlignment" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "annotationAlignment" %}
 
 ```typescript
 

@@ -2,7 +2,14 @@
 
 ## customize shape
 
-To customize the layer shape, we need to modify default the layer `shapeSettings` property. In that we can customize the shape color by using the `fill` property and border by using `border.color` and `border.width`.
+The following properties are available in `shapeSettings` property to customize the shapes of the Maps component.
+
+* `fill` - Customizes the shape color.
+* `autofill` - Applies the default palette colors to shapes.
+* `palette` - Applies own custom palette for shapes.
+* `border` - Customizes the maps shape border.
+* `dashArray` - Customizes the different dash array border line format.
+* `opacity` - Customizes the shape opacity.
 
 ```typescript
 import { Maps } from '@syncfusion/ej2-maps';
@@ -21,9 +28,9 @@ let map: Maps = new Maps({
 map.appendTo('#element');
 ```
 
-To apply default palette colors for shapes need to enable the `autofill` property.
+To apply the default palette colors for shapes, enable the `autofill` property.
 
-{% tab template="maps/default-map", sourceFiles="index.ts,index.html", es5Template="fill" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "fill" %}
 
 ```typescript
 import { Maps } from '@syncfusion/ej2-maps';
@@ -34,8 +41,7 @@ let map: Maps = new Maps({
         layerType: 'Geometry',
         shapeData: world_map,
         shapeSettings: {
-            fill: '#33CCFF',
-            border: { color: '#FFFFFF', width: 2}
+            autofill: true
         }
     }]
 });
@@ -45,9 +51,9 @@ map.appendTo('#element');
 
 {% endtab %}
 
-you can apply own custom palette for shape, you need to provide the palette colors for `palette`.
+To apply own custom palette to shapes, provide the palette colors to  `palette`.
 
-{% tab template="maps/default-map", sourceFiles="index.ts,index.html",es5Template="auto-fill" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "auto-fill" %}
 
 ```typescript
 import { Maps } from '@syncfusion/ej2-maps';
@@ -88,7 +94,7 @@ The maps control has the following projection types:
 * Winkel3
 * AitOff.
 
-{% tab template="maps/projection", sourceFiles="index.ts,index.html" , es5Template="projection" %}
+{% tab template= "maps/projection",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "projection" %}
 
 ```typescript
 import { Maps, ProjectionType } from '@syncfusion/ej2-maps';

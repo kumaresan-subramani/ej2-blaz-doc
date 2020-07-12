@@ -11,7 +11,7 @@ To render bubble in maps need to inject `Bubble` module using `Maps.Inject(Bubbl
 export let world_map = // paste the World map from WorldMap.json Geo json file.
 ```
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "bubble" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "bubble" %}
 
 ```typescript
 import { world_map } from './world-map.ts';
@@ -44,7 +44,7 @@ map.appendTo('#element');
 
 Using the `minRadius` and `maxRadius` properties in `bubbleSettings`, you can render the bubbles in different sizes based on the `valuePath` and `dataSource` values
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "bubble" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "bubbleSizing" %}
 
 ```typescript
 import { world_map } from './world-map.ts';
@@ -79,7 +79,7 @@ You can specify multiple types of bubble groups using the `bubbleSettings` prope
 
 In the following code example, the gender-wise population ratio is demonstrated with two different bubble groups.
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "bubble" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "bubbleGroup" %}
 
 ```typescript
 import { world_map } from './world-map.ts';
@@ -97,16 +97,16 @@ let map: Maps = new Maps({
             colorValuePath: "femaleRatioColor"
             dataSource: [
                 {
-                    country: "United States", femaleRatio: 50.50442726, maleRatio =49.49557274, femaleRatioColor ="green", maleRatioColor = "blue"
+                    country: "United States", femaleRatio: 50.50442726, maleRatio: 49.49557274, femaleRatioColor: "green", maleRatioColor: "blue"
                 },
                 {
-                    country: "India", femaleRatio =48.18032713, maleRatio =51.81967287, femaleRatioColor ="blue", maleRatioColor = "#c2d2d6"
+                    country: "India", femaleRatio: 48.18032713, maleRatio: 51.81967287, femaleRatioColor: "blue", maleRatioColor: "#c2d2d6"
                 },
                 {
                     country: "Oman", femaleRatio: 34.15597234, maleRatio: 65.84402766, femaleRatioColor: "#09156d", maleRatioColor: "orange"
                 },
                 {
-                    country: "United Arab Emirates", femaleRatio: 27.59638942, maleRatio: 72.40361058, femaleRatioColor: "#09156d", maleRatioColor="orange"
+                    country: "United Arab Emirates", femaleRatio: 27.59638942, maleRatio: 72.40361058, femaleRatioColor: "#09156d", maleRatioColor: "orange"
                 }
             ],
             maxRadius: 20,
@@ -116,20 +116,20 @@ let map: Maps = new Maps({
             bubbleType: 'Circle'
             opacity: 0.4,
             minRadius: 15,
-            valuePath: "maleRatio"
-            colorValuePath: "maleRatioColor"
+            valuePath: "maleRatio",
+            colorValuePath: "maleRatioColor",
             dataSource: [
                 {
-                    country: "United States", femaleRatio: 50.50442726, maleRatio =49.49557274, femaleRatioColor ="green", maleRatioColor = "blue"
+                    country: "United States", femaleRatio: 50.50442726, maleRatio: 49.49557274, femaleRatioColor: "green", maleRatioColor: "blue"
                 },
                 {
-                    country: "India", femaleRatio =48.18032713, maleRatio =51.81967287, femaleRatioColor ="blue", maleRatioColor = "#c2d2d6"
+                    country: "India", femaleRatio: 48.18032713, maleRatio: 51.81967287, femaleRatioColor: "blue", maleRatioColor: "#c2d2d6"
                 },
                 {
                     country: "Oman", femaleRatio: 34.15597234, maleRatio: 65.84402766, femaleRatioColor: "#09156d", maleRatioColor: "orange"
                 },
                 {
-                    country: "United Arab Emirates", femaleRatio: 27.59638942, maleRatio: 72.40361058, femaleRatioColor: "#09156d", maleRatioColor="orange"
+                    country: "United Arab Emirates", femaleRatio: 27.59638942, maleRatio: 72.40361058, femaleRatioColor: "#09156d", maleRatioColor: "orange"
                 }
             ],
             maxRadius: 25,
@@ -146,7 +146,7 @@ map.appendTo('#element');
 To enable the legend for the bubble, need to set `legendSettings.visible` as true and `legendSettings.type` as 'Bubbles'. To render the legend in maps need to Inject Legend module using `Maps.Inject(Legend)` method.
 Refer the below code snippet to enable the legend for bubbles with each bubble different colors rendering.
 
-{% tab template= "maps/default-map",sourceFiles="index.ts,index.html,index.css" , isDefaultActive=true , es5Template = "bubble" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "bubble" %}
 
 ```typescript
 import { world_map } from './world-map.ts';

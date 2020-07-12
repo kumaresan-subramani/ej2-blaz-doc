@@ -1,6 +1,6 @@
 # Populate Data
 
-In this section you can learn how to populate shape data for providing Data input to Map control and usage of DataSource property.
+This section explains how to populate data inputs and provide it to the Maps component.
 
 ## Shape Data
 
@@ -31,7 +31,7 @@ The following properties in shape layers is be used for binding data in Maps con
 
 ## Data Source
 
-The dataSource property accepts the collection values as input. For example, you can provide the list of objects as input.
+The dataSource property is used to represent statistical data in the Maps component, and it accepts a collection of values as input. For example, you can provide a list of objects as input. This data source will be further used to color the map, display data labels, display tooltips, and more.
 
 ## Shape Data Path
 
@@ -167,7 +167,7 @@ You can bind the data field from data source to the maps in two different ways.
 2. Bind the field name as `data.field` to the properties as [`shapeDataPath`](../api/maps/layerSettings/#shapedatapath), [`colorValuePath`](../api/maps/markerSettings/#colorvaluepath),
 [`valuePath`](../api/maps/tooltipSettings/#valuepath) and [`shapeValuePath`](../api/maps/markerSettings/#shapevaluepath).
 
-The complex data source binding can be done as illustrated in the following code example.
+Refer complex support for data source as illustrated in the following code example.
 
 {% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "complexDataSource" %}
 

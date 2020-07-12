@@ -88,7 +88,7 @@ To enable the equal colormapping refer the `shapeSettings.colorMapping` code sni
 Finally set `legendSettings.visible` as true and Inject the Legend Module into Maps using
 `Maps.Inject(Legend)` Method.
 
-{% tab template="maps/default-map", es5Template = "legend" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "legend" %}
 
 ```typescript
 
@@ -172,7 +172,7 @@ export let population_density = [
 
 Bind the `population_density` value to `dataSource` layer, and then specify the `colorValuePath` as 'density' to map the range values for shapes. Refer to the following the code example for more details.
 
-{% tab template= "maps/default-map",es5Template = "excludecolor" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "excludecolor" %}
 
 ```typescript
 import { Maps, Legend } from '@syncfusion/ej2-maps';
@@ -214,7 +214,7 @@ map.appendTo('#element');
 
 To enable or disable the desired legend for each colormapping, set the `showLegend` property to `true` in `colorMapping`.
 
-{% tab template="maps/default-map", es5Template = "hidedesiredlegend" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "hidedesiredlegend" %}
 
 ```typescript
 import { Maps, Legend } from '@syncfusion/ej2-maps';
@@ -258,7 +258,7 @@ To enable or disable the legend visibility for each item, bind the field name in
 
 The following code example shows how to hide the legend items based data source value.
 
-{% tab template="maps/default-map", es5Template="hidedesiredlegendDS" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "hidedesiredlegendDS" %}
 
 ```typescript
 import { Maps, Legend } from '@syncfusion/ej2-maps';
@@ -290,7 +290,7 @@ map.appendTo('#element');
 
 To show the legend text based on binding, the field name in the datasource should be set to the `valuePath` property in `legendSettings`.
 
-{% tab template="maps/default-map",es5Template="bindlegendtext" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "bindlegendtext" %}
 
 ```typescript
 import { Maps, Legend } from '@syncfusion/ej2-maps';
@@ -322,7 +322,7 @@ map.appendTo('#element');
 
 To enable or disable the duplicate legend items, set the property `removeDuplicateLegend` property to `true` in `legendSettings`.
 
-{% tab template="maps/default-map",es5Template="duplicatelegend" %}
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "duplicatelegend" %}
 
 ```typescript
 import { Maps, Legend } from '@syncfusion/ej2-maps';
@@ -342,6 +342,68 @@ let map: Maps = new Maps({
         dataSource: default_data,
         shapeSettings:{
             colorValuePath:'color'
+        }
+    }]
+});
+
+map.appendTo('#element');
+```
+
+{% endtab %}
+
+## Toggle option in legend
+
+The toggle option has been provided for legend. So, if you toggle a legend, the given color will be changed to the corresponding maps shape item. You can enable the toggle options using the `toggleLegendSettings` property.
+
+The following options are available to customize the shape of the map:
+
+* applyShapeSettings – Applies the fill property value in `shapeSettings` to a shape of the maps if it                         is true and a legend item is clicked.
+
+* fill- Specifies the color to the shape of the maps.
+
+* opacity – Specifies the transparency of the legend.
+
+* border – Specifies the border color and width.
+
+The following code example demonstrates how to add the toggle option to legend.
+
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "togglelegend" %}
+
+```typescript
+import { Maps, Legend } from '@syncfusion/ej2-maps';
+import { world_map } from './world-map.ts';
+import { Population_Density } from './data.ts';
+Maps.Inject(Legend);
+let map: Maps = new Maps({
+    legendSettings: {
+        visible: true,
+        toggleLegendSettings: {
+           enable: true,
+           applyShapeSettings: false,
+           border: {
+               color: 'green',
+               width: 2
+           }
+        }
+    },
+    layers: [{
+        shapeData: world_map,
+        shapeDataPath: 'name',
+        shapePropertyPath: 'name',
+        dataSource: Population_Density,
+        shapeSettings: {
+            colorValuePath: 'density',
+            colorMapping: [
+                {
+                    from: 0, to: 100, color: 'rgb(153,174,214)',
+                },
+                {
+                    from: 101, to: 200, color: 'rgb(115,143,199)',
+                },
+                {
+                    color: 'rgb(77,112,184)'
+                },
+            ]
         }
     }]
 });

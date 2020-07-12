@@ -77,6 +77,36 @@ let map: Maps = new Maps({
 
 {% endtab %}
 
+## Displaying layer in the view
+
+In Maps, you can load multiple shape files. Using the `baseLayerIndex` property, you can select a layer to display on user interface.
+
+In this example, we have loaded two layers with the World map and the United States map shape data and selected a layer using the `baseLayerIndex` property to show that layer on the web page.
+
+{% tab template= "maps/default-map",sourceFiles="index.ts,index.html" , isDefaultActive=true , es5Template = "layerView" %}
+
+```typescript
+import { world_map } from './world-map.ts';
+import { usa_map } from '../default-map-cs1/usa.ts';
+import { Maps} from '@syncfusion/ej2-maps';
+let map: Maps = new Maps({
+   baseLayerIndex: 1,
+   layers: [
+   {
+       shapeData: world_map,
+   }, {
+       shapeData: usa_map
+   }]
+});
+map.appendTo('#element');
+```
+
+{% endtab %}
+
+If you set the `baseLayerIndex` value to 0, the world map will be loaded.
+
+This concept is used in the Maps drill-down feature, so the corresponding shape will be loaded when clicking a shape of the maps.
+
 Refer the [`API`](../api/maps/layerSettingsModel/) for Layers feature.
 
 ## See Also
