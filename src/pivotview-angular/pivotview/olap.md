@@ -641,6 +641,70 @@ Previous changes can be cleared by using the "Clear" option while performing ope
 
 ![output](images/clear-edit-olap.png "Editing the calculated field")
 
+## Virtual Scrolling
+
+Allows large amounts of data to be loaded without any performance degradation by rendering rows and columns in relation to the current viewport. Rest of the data will be brought into the viewport dynamically based on vertical or horizontal scroll position. This feature can be enabled by setting the [`enableVirtualization`](https://ej2.syncfusion.com/angular/documentation/api/pivotview#enablevirtualization) property to **true**.
+
+To use the virtual scrolling feature, inject the `VirtualScroll` module into the pivot table.
+
+{% tab template="pivot-grid/getting-started", sourceFiles="app/app.component.ts,app/app.module.ts" %}
+
+```typescript
+import { Component } from '@angular/core';
+import { IDataOptions, IDataSet, PivotView, VirtualScrollService } from '@syncfusion/ej2-angular-pivotview';
+
+@Component({
+  selector: 'app-container',
+  providers: [VirtualScrollService],
+  // specifies the template string for the pivot table component
+  template: `<ejs-pivotview #pivotview id='PivotView' height='350' [dataSourceSettings]=dataSourceSettings enableVirtualization='true'[width]=width></ejs-pivotview>`
+})
+
+export class AppComponent {
+    public dataSourceSettings: IDataOptions;
+    ngOnInit(): void {
+        this.dataSourceSettings = {
+            catalog: 'Adventure Works DW 2008 SE',
+            cube: 'Adventure Works',
+            providerType: 'SSAS',
+            url: 'https://bi.syncfusion.com/olap/msmdpump.dll',
+            localeIdentifier: 1033,
+            rows: [
+                { name: '[Customer].[Customer]', caption: 'Customer' },
+            ],
+            columns: [
+                { name: '[Product].[Product Categories]', caption: 'Product Categories' },
+                { name: '[Measures]', caption: 'Measures' },
+            ],
+            values: [
+                { name: '[Measures].[Customer Count]', caption: 'Customer Count' },
+                { name: '[Measures].[Internet Sales Amount]', caption: 'Internet Sales Amount' }
+            ],
+            filters: [
+                { name: '[Date].[Fiscal]', caption: 'Date Fiscal' },
+            ],
+            filterSettings: [
+                {
+                    name: '[Date].[Fiscal]', items: ['[Date].[Fiscal].[Fiscal Quarter].&[2002]&[4]',
+                        '[Date].[Fiscal].[Fiscal Year].&[2005]'],
+                    levelCount: 3
+                }
+            ],
+            formatSettings: [{ name: '[Measures].[Internet Sales Amount]', format: 'C0' }]
+        };
+        this.width = "100%";
+    }
+ }
+```
+
+{% endtab %}
+
+### Limitations for virtual scrolling
+
+* The [`columnWidth`](https://ej2.syncfusion.com/angular/documentation/api/pivotview/gridSettings/#columnwidth) property in [`gridSettings`](https://ej2.syncfusion.com/angular/documentation/api/pivotview/gridSettings) should be in pixels. The percentage value is not accepted.
+* Resizing columns and setting the width of individual columns will affect scrolling and is therefore not recommended.
+* The grand totals option is not supported by virtual scrolling.
+
 ### Run the application
 
 The quickstart project is configured to compile and run the application in the browser. Use the following command to run the application.

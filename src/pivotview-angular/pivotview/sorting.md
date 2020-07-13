@@ -75,6 +75,8 @@ The value sorting can also be configured using the [`valueSortSettings`](https:/
 * [`headerDelimiter`](https://ej2.syncfusion.com/angular/documentation/api/pivotview/valueSortSettings/#headerdelimiter): It allows to set the delimiters string to separate the header text between levels.
 * [`sortOrder`](https://ej2.syncfusion.com/angular/documentation/api/pivotview/valueSortSettings/#sortorder): It allows to set the sort direction of the value field.
 
+> Value fields are set to the column axis by default. In such cases, the value sorting applied will have an effect on the column alone. You need to place the value fields in the row axis to do so in row wise. For more information, please [`refer here`](https://ej2.syncfusion.com/angular/documentation/pivotview/data-binding/#values-in-row-axis).
+
 {% tab template="pivot-grid/getting-started", sourceFiles="app/app.component.ts,app/app.module.ts" %}
 
 ```typescript

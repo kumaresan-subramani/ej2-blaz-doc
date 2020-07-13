@@ -8,7 +8,7 @@ description: "Virtual Scrolling allows user to load large amount of data without
 
 # Virtual Scrolling
 
-The virtual scrolling option allows you to load the large amounts of data without performance degradation by rendering rows and columns only in the content viewport. The data will refresh dynamically on vertical or horizontal scroll. This feature can be enabled by setting the `enableVirtualization` property to **true**.
+The virtual scrolling option allows you to load the large amounts of data without performance degradation by rendering rows and columns only in the content viewport. The data will refresh dynamically on vertical or horizontal scroll. This feature can be enabled by setting the [`enableVirtualization`](https://ej2.syncfusion.com/angular/documentation/api/pivotview/#enablevirtualization) property to **true**.
 
 To use the virtual scrolling feature, inject the `VirtualScroll` module in to the pivot table.
 
