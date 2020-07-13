@@ -301,6 +301,25 @@ Previous changes can be cleared by using the "Clear" option while performing ope
 
 ![output](images/clear-edit-olap.png "Editing the calculated field")
 
+## Virtual Scrolling
+
+Allows large amounts of data to be loaded without any performance degradation by rendering rows and columns in relation to the current viewport. Rest of the data will be brought into the viewport dynamically based on vertical or horizontal scroll position. This feature can be enabled by setting the [`EnableVirtualization`](https://help.syncfusion.com/cr/aspnetmvc-js2/Syncfusion.EJ2~Syncfusion.EJ2.PivotView.PivotView~EnableVirtualization.html) property in [`PivotView`](https://help.syncfusion.com/cr/aspnetmvc-js2/Syncfusion.EJ2~Syncfusion.EJ2.PivotView.PivotView_properties.html) class to **true**.
+
+{% aspTab template="pivot-table/getting-start-mvc/olap-virtual", sourceFiles="virtual.cs" %}
+
+{% endaspTab %}
+
+
+{% aspTab template="pivot-table/getting-start-mvc/olap-formatting", sourceFiles="formatting.cs" %}
+
+{% endaspTab %}
+
+### Limitations for virtual scrolling
+
+* The [`ColumnWidth`](https://help.syncfusion.com/cr/aspnetmvc-js2/Syncfusion.EJ2~Syncfusion.EJ2.PivotView.PivotViewGridSettings~ColumnWidth.html) property in [`GridSettings`](https://help.syncfusion.com/cr/aspnetmvc-js2/Syncfusion.EJ2~Syncfusion.EJ2.PivotView.PivotViewGridSettings_members.html) should be in pixels. The percentage value is not accepted.
+* Resizing columns and setting the width of individual columns will affect scrolling and is therefore not recommended.
+* The grand totals option is not supported by virtual scrolling.
+
 ## Data Binding
 
 To bind OLAP datasource to the pivot table, you need to specify following properties under [`DataSourceSettings`](https://help.syncfusion.com/cr/aspnetmvc-js2/Syncfusion.EJ2~Syncfusion.EJ2.PivotView.PivotViewDataSourceSettings.html) option.
