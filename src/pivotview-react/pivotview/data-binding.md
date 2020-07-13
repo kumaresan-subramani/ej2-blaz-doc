@@ -131,9 +131,50 @@ ReactDOM.render(<App />, document.getElementById('pivotview'));
 
 In-order to bind remote JSON data, mention the endpoint [`URL`](https://ej2.syncfusion.com/react/documentation/api/pivotview/dataSourceSettings/#url) under [`dataSourceSettings`](https://ej2.syncfusion.com/react/documentation/api/pivotview#datasourcesettings) property. The [`URL`](https://ej2.syncfusion.com/react/documentation/api/pivotview/dataSourceSettings/#url) property supports both direct downloadable file (*.json) and web service URL.
 
+{% tab template="pivot-table/default", sourceFiles="app/**/index.tsx",compileJsx=true %}
+
+```typescript
+import { IDataOptions, IDataSet, PivotViewComponent } from '@syncfusion/ej2-react-pivotview';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+
+class App extends React.Component<{}, {}>{
+  
+  this.pivotObj.dataSourceSettings = {
+    url: 'https://cdn.syncfusion.com/data/sales-analysis.json',
+    expandAll: false,
+    rows: [
+      { name: 'Year', caption: 'Production Year' },
+      { name: 'HalfYear', caption: 'Half Year' },
+      { name: 'Quarter', caption: 'Quarter' }
+    ],
+    columns: [
+      { name: 'EnerType', caption: 'Energy Type' },
+      { name: 'EneSource', caption: 'Energy Source' }
+    ],
+    values: [
+      { name: 'PowUnits', caption: 'Units (GWh)' },
+      { name: 'ProCost', caption: 'Cost (MM)' }
+    ],
+    filters: []
+  }
+  public pivotObj: PivotViewComponent;
+  render() {
+    return <PivotViewComponent  ref={d => this.pivotObj = d!} id='PivotView' height={350} dataSourceSettings={this.dataSourceSettings}></PivotViewComponent>
+  }
+};
+
+ReactDOM.render(<App />, document.getElementById('pivotview'));
+
+```
+
+{% endtab %}
+
 ## CSV
 
 For CSV data binding, the `type` property under [`dataSourceSettings`](https://ej2.syncfusion.com/react/documentation/api/pivotview#datasourcesettings) needs to be set as `CSV` mandatorily.
+
+> The CSV format is considered to be the most compact format compared to JSON since it is half the size of JSON. This helps to reduce the bandwidth while transferring to the browser.
 
 ### Binding CSV data via local
 
@@ -396,6 +437,70 @@ class App extends React.Component<{}, {}>{
 
 ReactDOM.render(<App />, document.getElementById('pivotview'));
 
+```
+
+{% endtab %}
+
+## Mapping
+
+One can define field information like alias name (caption), data type, aggregation type, show and hide subtotals etc. using the [`fieldMapping`](https://ej2.syncfusion.com/react/documentation/api/pivotview/dataSourceSettings/#fieldmapping) property under [`dataSourceSettings`](https://ej2.syncfusion.com/react/documentation/api/pivotview/dataSourceSettings/). The available options are,
+
+* [`name`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#name) - It is to specify the appropriate field name.
+* [`caption`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#caption) - It is to set the alias name (caption) to the specific field. Instead of actual field name, the alias name (caption) will be set in the UI of the pivot table.
+* [`type`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#type) - It is to display values in the pivot table with appropriate aggregation such as sum, product, count, average, minimum, maximum, etc. Its default value is **sum**. This option is applicable only for relational data source.
+* [`axis`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#axis) - It will help to display the field in specified axis such as row/column/value/filter axis of the pivot table.
+* [`showNoDataItems`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#shownodataitems) - It is to show all the members of a specific field to the pivot table, even if there are no data in the intersection of the row and column. The default value is **false**. This option is applicable only for relational data source.
+* [`baseField`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#basefield) - For the aggregate types like "DifferenceFrom" or "PercentageOfDifferenceFrom" or "PercentageOfParentTotal", selective field is assigned for comparison via this property.
+* [`baseItem`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#baseitem) For the aggregate types like "DifferenceFrom" or "PercentageOfDifferenceFrom" or "PercentageOfParentTotal", selective member in a field is assigned for comparison via this property.
+* [`showSubTotals`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#showsubtotals) - It is to show or hide sub-totals of a specific field in row and column axis of the pivot table. The default value is **true**.
+* [`isNamedSet`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#isnamedset) - It is to set whether the specified field is named set or not. In general, the named set is a set of dimension members or a set expression (MDX query) to be created as a dimension in the SSAS OLAP cube itself. The default value is **false** and this option is applicable only for OLAP data source.
+* [`isCalculatedField`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#iscalculatedfield) - It is to set whether the specified field is a calculated field or not. In general, a calculated field is created from the bound data source or using simple formula with basic arithmetic operators in the pivot table. The default value is **false** and this option is applicable only for OLAP data source.
+* [`showFilterIcon`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#showfiltericon) - It is to show or hide the filter icon of a specific field which will be displayed on the button of the grouping bar and field list UI. This filter icon is used to filter the members of a specified field at runtime in the pivot table. The default value is **true**.
+* [`showSortIcon`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#showsorticon) - It is to show or hide the sort icon of a specific field which will be displayed on the button of the grouping bar and field list UI. This sort icon is used to order members of a specified field either in ascending or descending at runtime. The default value is **true**.
+* [`showRemoveIcon`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#showremoveicon) - It is to show or hide the remove icon of a specific field which will be displayed on the button of the grouping bar and field list UI. This remove icon is used to remove the specified field during runtime. The default value is **true**.
+* [`showValueTypeIcon`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#showvaluetypeicon) - It is to show or hide the value type icon of a specific field which will be displayed on the button of the grouping bar and field list UI. This value type icon helps to select the appropriate aggregation type to specified value field at runtime. The default value is **true**.
+* [`showEditIcon`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#showediticon) - It is to show or hide the edit icon of a specific field which will be displayed on the button of the grouping bar and field list UI. This edit icon is used to modify caption, formula, and format of a specified calculated field at runtime. The default value is **true**.
+* [`allowDragAndDrop`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#allowdraganddrop) - It is to restrict specific field's button from being dragged on runtime in the grouping bar and field list UI. This will prevent from altering the current report. The default value is **true**.
+* [`dataType`](https://ej2.syncfusion.com/react/documentation/api/pivotview/fieldOptionsModel/#datatype) - It is to specify the type of the field like 'string', 'number', 'datetime', 'date', and 'boolean'.
+
+The main purpose of these mapping options is to configure each field that is not part of the initial pivot report. Even if any field that is part of this mapping is defined here, the value set in the initial report will have the highest preceding.
+
+> This option is applicable only for relational data source.
+In the below code sample, visibility of the field button icons are configured.
+
+{% tab template="pivot-table/default", sourceFiles="app/**/index.tsx",compileJsx=true %}
+
+```typescript
+import { GroupingBar, FieldList, IDataOptions, IDataSet, Inject, PivotViewComponent } from '@syncfusion/ej2-react-pivotview';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { pivotData } from './datasource';
+
+class App extends React.Component<{}, {}>{
+
+  public dataSourceSettings: IDataOptions = {
+    columns: [{ name: 'Year', caption: 'Production Year' }],
+    dataSource: pivotData as IDataSet[],
+    expandAll: false,
+    allowLabelFilter: true,
+    allowValueFilter: true,
+    filters: [],
+    formatSettings: [{ name: 'Amount', format: 'C0' }],
+    rows: [{ name: 'Country' }],
+    values: [{ name: 'Sold', caption: 'Units Sold' }],
+    fieldMapping: [
+            { name: 'Quarter', showSortIcon: false },
+            { name: 'Products', showFilterIcon: false, showRemoveIcon: false },
+            { name: 'Amount', showValueTypeIcon: false, caption: 'Sold Amount' },
+        ]
+  }
+  public pivotObj: PivotViewComponent;
+  render() {
+    return <PivotViewComponent  ref={d => this.pivotObj = d!} id='PivotView' height={350} dataSourceSettings={this.dataSourceSettings} showGroupingBar={true} showFieldList={true} ><Inject services={[GroupingBar, FieldList]}/></PivotViewComponent>
+  }
+};
+
+ReactDOM.render(<App />, document.getElementById('pivotview'));
 ```
 
 {% endtab %}

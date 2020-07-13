@@ -614,6 +614,57 @@ Previous changes can be cleared by using the "Clear" option while performing ope
 
 ![output](images/clear-edit-olap.png "Editing the calculated field")
 
+## Virtual Scrolling
+
+Allows large amounts of data to be loaded without any performance degradation by rendering rows and columns in relation to the current viewport. Rest of the data will be brought into the viewport dynamically based on vertical or horizontal scroll position. This feature can be enabled by setting the [`enableVirtualization`](https://ej2.syncfusion.com/react/documentation/api/pivotview/#enablevirtualization) property to **true**.
+
+To use the virtual scrolling feature, inject the `VirtualScroll` module into the pivot table.
+
+{% tab template="pivot-table/default", sourceFiles="app/**/index.tsx",compileJsx=true %}
+
+```typescript
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { IDataOptions, IDataSet, PivotViewComponent, VirtualScroll } from '@syncfusion/ej2-react-pivotview';
+class App extends React.Component<{}, {}>{
+  public dataSourceSettings: IDataOptions = {
+            catalog: 'Adventure Works DW 2008 SE',
+            cube: 'Adventure Works',
+            providerType: 'SSAS',
+            enableSorting: true,
+            url: 'https://bi.syncfusion.com/olap/msmdpump.dll',
+            localeIdentifier: 1033,
+            rows: [
+                { name: '[Customer].[Customer]', caption: 'Customer' },
+            ],
+            columns: [
+                { name: '[Product].[Product Categories]', caption: 'Product Categories' },
+                { name: '[Measures]', caption: 'Measures' },
+            ],
+            values: [
+                { name: '[Measures].[Customer Count]', caption: 'Customer Count' },
+                { name: '[Measures].[Internet Sales Amount]', caption: 'Internet Sales Amount' }
+            ],
+            formatSettings: [{ name: '[Measures].[Internet Sales Amount]', format: 'C0' }]
+  };
+  public pivotObj: PivotViewComponent;
+  render() {
+    return <PivotViewComponent  ref={d => this.pivotObj = d!} id='PivotView' height={350} enableVirtualization={true} dataSourceSettings={this.dataSourceSettings}><Inject services={[VirtualScroll]}/></PivotViewComponent>
+  }
+};
+ReactDOM.render(<App />, document.getElementById('pivotview'));
+
+```
+
+{% endtab %}
+
+
+### Limitations for virtual scrolling
+
+* The [`columnWidth`](https://ej2.syncfusion.com/react/documentation/api/pivotview/gridSettings/#columnwidth) property in [`gridSettings`](https://ej2.syncfusion.com/react/documentation/api/pivotview/gridSettings) should be in pixels. The percentage value is not accepted.
+* Resizing columns and setting the width of individual columns will affect scrolling and is therefore not recommended.
+* The grand totals option is not supported by virtual scrolling.
+
 ### Run the application
 
 The quickstart project is configured to compile and run the application in the browser. Use the following command to run the application.
