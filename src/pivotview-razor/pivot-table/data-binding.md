@@ -88,20 +88,24 @@ Using local variable, the JSON data can also be bound to the pivot table using [
 
 ```
 
-In the meantime, the JSON data file can be connected to the pivot table by using the path. The resulting string from the given path must be converted to JSON data that can be assigned to the [`DataSource`](https://help.syncfusion.com/cr/cref_files/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.PivotViewDataSourceSettings%601~DataSource.html) Property under [`PivotViewDataSourceSettings`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.DataSourceSettingsModel%601.html). The following code example illustrates the same.
+ ![output](images/localdata.png)
+
+In the meantime, the JSON data from the local *.json file type can also be connected to the pivot table. Here, the file can be read by the **StreamReader** option, which will give the result in the string form. And the resulting string needs to be converted to JSON data that can be assigned to the [`DataSource`](https://help.syncfusion.com/cr/cref_files/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.PivotViewDataSourceSettings%601~DataSource.html) property under [`PivotViewDataSourceSettings`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.DataSourceSettingsModel%601.html). The following code example illustrates the same.
 
 ```csharp
     @using Syncfusion.Blazor.PivotView
-    @using Syncfusion.Blazor.Data
+    @using System;
+    @using System.Collections.Generic;
+    @using System.IO;
+    @using System.Net;
 
     <SfPivotView TValue="PivotProductDetails" Width="1500" Height="300" ShowFieldList="true">
-        <PivotViewDataSourceSettings TValue="PivotProductDetails" DataSource="@dataSource" ExpandAll=false EnableSorting=true>
+        <PivotViewDataSourceSettings TValue="PivotProductDetails" DataSource="@dataSource" ExpandAll=false  EnableSorting=true>
             <PivotViewColumns>
                 <PivotViewColumn Name="EnerType" Caption="Energy Type"></PivotViewColumn>
-                <PivotViewColumn Name="EneSource" Caption="Energy Source"></PivotViewColumn>
             </PivotViewColumns>
             <PivotViewRows>
-                <PivotViewRow Name="Date"></PivotViewRow>
+                <PivotViewRow Name="EneSource" Caption="Energy Source"></PivotViewRow>
             </PivotViewRows>
             <PivotViewValues>
                 <PivotViewValue Name="PowUnits" Caption="Units (GWh)"></PivotViewValue>
@@ -120,8 +124,14 @@ In the meantime, the JSON data file can be connected to the pivot table by using
 
         protected override void OnInitialized()
         {
-            string data = PivotDemo.Data.WeatherForecast.GetData(true);
-            this.dataSource = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PivotProductDetails>>(data);
+            // Put appropriate file path here
+            string url = AppDomain.CurrentDomain.BaseDirectory + "sales-analysis.json";
+            WebClient myWebClient = new WebClient();
+            Stream myStream = myWebClient.OpenRead(url);
+            StreamReader stream = new StreamReader(myStream);
+            string result = stream.ReadToEnd();
+            stream.Close();
+            this.dataSource = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PivotProductDetails>>(result);
         }
 
         public class PivotProductDetails
@@ -136,46 +146,47 @@ In the meantime, the JSON data file can be connected to the pivot table by using
     }
 ```
 
+![output](images/remote-json.png)
+
 ### Binding JSON data via remote
 
 In-order to bind remote JSON data, mention the endpoint [`Url`](https://help.syncfusion.com/cr/cref_files/blazor/Syncfusion.Blazor~Syncfusion.Blazor.DataManager~Url.html) under [`PivotViewDataSourceSettings`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.DataSourceSettingsModel%601.html) property. The [`Url`](https://help.syncfusion.com/cr/cref_files/blazor/Syncfusion.Blazor~Syncfusion.Blazor.DataManager~Url.html) property supports both direct downloadable file (*.json) and web service URL.
 
 ```csharp
     @using Syncfusion.Blazor.PivotView
-    @using Syncfusion.Blazor.Data
 
-    <SfPivotView TValue="OrderDetails" Width="800" Height="340">
-        <PivotViewDataSourceSettings TValue="OrderDetails" Url="https://cdn.syncfusion.com/data/sales-analysis.json" ExpandAll="false">
+    <SfPivotView TValue="PivotProductDetails" Width="1500" Height="300" ShowFieldList="true">
+        <PivotViewDataSourceSettings TValue="PivotProductDetails" ExpandAll=false EnableSorting=true Url="https://cdn.syncfusion.com/data/sales-analysis.json" Type=DataSourceType.JSON>
             <PivotViewColumns>
                 <PivotViewColumn Name="EnerType" Caption="Energy Type"></PivotViewColumn>
-                <PivotViewColumn Name="EneSource" Caption="Energy Source"></PivotViewColumn>
             </PivotViewColumns>
             <PivotViewRows>
-                <PivotViewRow Name="Year" Caption="Production Year"></PivotViewRow>
-                <PivotViewRow Name="HalfYear" Caption="Half Year"></PivotViewRow>
-                <PivotViewRow Name="Quarter" Caption="Quarter"></PivotViewRow>
+                <PivotViewRow Name="EneSource" Caption="Energy Source"></PivotViewRow>
             </PivotViewRows>
             <PivotViewValues>
                 <PivotViewValue Name="PowUnits" Caption="Units (GWh)"></PivotViewValue>
                 <PivotViewValue Name="ProCost" Caption="Cost (MM)"></PivotViewValue>
             </PivotViewValues>
-            </PivotViewDataSourceSettings>
+            <PivotViewFormatSettings>
+                <PivotViewFormatSetting Name="PowUnits" Format="N0" UseGrouping=true></PivotViewFormatSetting>
+                <PivotViewFormatSetting Name="ProCost" Format="C0" UseGrouping=true></PivotViewFormatSetting>
+            </PivotViewFormatSettings>
+        </PivotViewDataSourceSettings>
+        <PivotViewGridSettings ColumnWidth="120"></PivotViewGridSettings>
     </SfPivotView>
 
     @code{
-        public class OrderDetails
+        public class PivotProductDetails
         {
-            public string Year { get; set; }
-            public string HalfYear { get; set; }
-            public string Quarter { get; set; }
             public string EnerType { get; set; }
             public string EneSource { get; set; }
             public double PowUnits { get; set; }
             public double ProCost { get; set; }
         }
     }
-
 ```
+
+![output](images/remote-json.png)
 
 ## CSV
 
@@ -241,11 +252,16 @@ In-order to bind local CSV data to the pivot table, user needs to convert it as 
     }
 ```
 
-In the meantime, the CSV data file can also be connected to the pivot table by using the path. The resulting string from the given path must be converted to a string array that can be assigned to the [`DataSource`](https://help.syncfusion.com/cr/cref_files/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.PivotViewDataSourceSettings%601~DataSource.html) Property under [`PivotViewDataSourceSettings`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.DataSourceSettingsModel%601.html). The following code example illustrates the same.
+![output](images/csv-data.png)
+
+In the meantime, the CSV data from the local *. csv file type can also be connected to the pivot table. Here, the file can be read by the **StreamReader** option, which will give the result in the string form. And the resulting string needs to be converted to string array that can be assigned to the [`DataSource`](https://help.syncfusion.com/cr/cref_files/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.PivotViewDataSourceSettings%601~DataSource.html) property under [`PivotViewDataSourceSettings`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.PivotView.DataSourceSettingsModel%601.html). The following code example illustrates the same.
 
 ```csharp
     @using Syncfusion.Blazor.PivotView
-    @using Syncfusion.Blazor.Data
+    @using System;
+    @using System.Collections.Generic;
+    @using System.IO;
+    @using System.Net;
 
     <SfPivotView TValue="string[]" Width="1500" Height="300">
         <PivotViewDataSourceSettings TValue="string[]" DataSource="@dataSource" ExpandAll=false EnableSorting=true Type=DataSourceType.CSV>
@@ -260,7 +276,7 @@ In the meantime, the CSV data file can also be connected to the pivot table by u
             <PivotViewValues>
                 <PivotViewValue Name="Total Cost"></PivotViewValue>
                 <PivotViewValue Name="Total Revenue"></PivotViewValue>
-            <PivotViewValue Name="Total Profit"></PivotViewValue>
+                <PivotViewValue Name="Total Profit"></PivotViewValue>
             </PivotViewValues>
             <PivotViewFormatSettings>
                 <PivotViewFormatSetting Name="Total Cost" Format="C0" UseGrouping=true></PivotViewFormatSetting>
@@ -276,8 +292,14 @@ In the meantime, the CSV data file can also be connected to the pivot table by u
 
         protected override void OnInitialized()
         {
-            string data = PivotDemo.Data.WeatherForecast.GetData(false);
-            this.dataSource = GetCSVData(data);
+            // Put appropriate file path here
+            string url =  AppDomain.CurrentDomain.BaseDirectory + "sales.csv";
+            WebClient myWebClient = new WebClient();
+            Stream myStream = myWebClient.OpenRead(url);
+            StreamReader stream = new StreamReader(myStream);
+            string result = stream.ReadToEnd();
+            stream.Close();
+            this.dataSource = GetCSVData(result);
         }
 
         public List<string[]> GetCSVData(string data)
@@ -297,6 +319,8 @@ In the meantime, the CSV data file can also be connected to the pivot table by u
     }
 
 ```
+
+![output](images/csv-data.png)
 
 ### Binding CSV data via remote
 
@@ -340,6 +364,8 @@ In-order to bind remote CSV data, mention the endpoint [`Url`](https://help.sync
         }
     }
 ```
+
+![output](images/csv-data.png)
 
 ## Remote Data Binding
 
