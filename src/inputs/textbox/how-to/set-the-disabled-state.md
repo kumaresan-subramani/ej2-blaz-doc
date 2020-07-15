@@ -1,24 +1,25 @@
 ---
 title: "Set the disabled state"
 component: "Textbox"
-description: "Explains how to disable the user interaction on the text box component."
+description: "Covers customization of the text box component such as a rounded corner, disabled, read-only state, background color, and font color."
 ---
 
 # Set the disabled state
 
-To disable the TextBox, use its
-[Enabled](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Inputs.SfTextBox~Enabled.html)
-property.
+Disable the TextBox by adding the `e-disabled` to the input parent element and set `disabled` attribute to the input element.
 
-The following example demonstrates the TextBox in
-a disabled state.
+{% tab template= "textbox/getting-started-html", sourceFiles="index.html,index.ts", es5Template="basic-template" %}
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+```html
 
-<SfTextBox Placeholder='First Name' Enabled=false></SfTextBox>
+        <input class="e-input" type="text" placeholder="Enter Name" disabled/>
+
+        <div class="e-float-input e-disabled">
+            <input type='text' required  disabled/>
+            <span class="e-float-line"></span>
+            <label class="e-float-text">Enter Name</label>
+        </div>
+
 ```
 
-The output will be as follows.
-
-![textbox](../images/disabled.png)
+{% endtab %}

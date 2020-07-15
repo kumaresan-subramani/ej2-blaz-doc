@@ -1,49 +1,30 @@
 ---
 title: "Customize the textbox background-color and text-color"
 component: "Textbox"
-description: "Covers customization of the text box component such as background color and font color."
+description: "Covers customization of the text box component such as a rounded corner, disabled, read-only state, background color, and font color."
 ---
 
 # Customize the textbox background-color and text-color
 
-You can customize the text box styles such as background-color, text-color and border-color by overriding its default styles.
+You can customize the textbox styles such as background-color, text-color and border-color by overriding its default styles.
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+> To change the styles of the `floating label`, you must override the style to the input element.
 
-<div class="@(TextClass)">
-    <div class="e-input-in-wrap">
-        <input class="e-input" type="text" Placeholder="Enter Date" Value="John" @onfocus="@Focus" @onblur="@Blur" />
-        <span class="e-input-group-icon e-input-date"></span>
-    </div>
-</div>
+{% tab template= "textbox/textbox-customize", sourceFiles="index.html,index.ts,index.css", es5Template="textbox-customize-template" %}
 
-@code {
-    public string FocusClass { get; set; } = " e-input-focus";
-    public string TextClass { get; set; } = "e-input-group";
-    public void Focus(FocusEventArgs args)
-    {
-        this.TextClass = this.TextClass + FocusClass;
-        StateHasChanged();
-    }
+```html
 
-    public void Blur(FocusEventArgs args)
-    {
-        if (this.TextClass.Contains(FocusClass))
-        {
-            this.TextClass = this.TextClass.Replace(FocusClass, "");
-        }
-        StateHasChanged();
-    }
-}
-<style>
-    .e-input-group {
-        background: yellow;
-        color: red;
-    }
-</style>
+        <label>Normal Input</label>
+            <div class="e-input-group">
+                <input class="e-input" type="text" placeholder="First Name" />
+            </div>
+        <label> Floating Input </label>
+            <div class="e-float-input">
+                <input type="text" required />
+                <span class="e-float-line"> </span>
+                <label class="e-float-text">Last Name</label>
+            </div>
+
 ```
 
-The output will be as follows.
-
-![textbox](../images/back_customization.png)
+{% endtab %}

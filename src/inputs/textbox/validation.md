@@ -1,6 +1,6 @@
 ---
 title: "Validation"
-component: "TextBox"
+component: "Textbox"
 description: "Covers how to apply different validation styles to the text box (input) control such as error, warning, and success with a ripple effect."
 ---
 
@@ -9,19 +9,22 @@ description: "Covers how to apply different validation styles to the text box (i
 The TextBox supports three types of validation styles namely `error`, `warning`, and `success`. These states are
 enabled by adding corresponding classes `.e-error`, `.e-warning`, or `.e-success` to the input parent element.
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+{% tab template= "textbox/icon-samples", sourceFiles="index.html,index.ts,index.css", es5Template="icon-template" %}
 
-<label>Success</label>
-<SfTextBox Placeholder="Enter your address" CssClass="e-success" ></SfTextBox>
+```html
 
-<label>Error</label>
-<SfTextBox Placeholder="Enter your address" CssClass="e-error"></SfTextBox>
+   <div class="e-input-group e-warning">
+     <input class="e-input" type="text" placeholder="Input with warning" />
+   </div>
 
-<label>Warning</label>
-<SfTextBox Placeholder="Enter your address" CssClass="e-warning"></SfTextBox>
+   <div class="e-input-group e-error">
+     <input class="e-input" type="text" placeholder="Input with error" />
+   </div>
+
+   <div class="e-input-group e-success">
+     <input class="e-input" type="text" placeholder="Input with success" />
+   </div>
+
 ```
 
-The output will be as follows.
-
-![textbox](./images/Error_states.png)
+{% endtab %}

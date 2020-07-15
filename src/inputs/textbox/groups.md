@@ -1,26 +1,26 @@
 ---
 title: "Groups"
-component: "TextBox"
-description: "Explains how to add icons and clear button to the floating text box that is achieved with or without the required attribute."
+component: "Textbox"
+description: "Explains how to add icons and clear button to the floating text box that is  achieved with or without the required attribute."
 ---
 
 # Groups
 
 The following section explains you the steps required to create TextBox with `icon` and `floating label`.
 
-**TextBox:**
+TextBox:
 
-* Create a parent div element with the class `e-input-group`.
+* Create a parent div element with the class `e-input-group`
 
 * Place input element with the class `e-input` inside the parent div element.
 
 ```html
-<div class="e-input-group">
-<input class="e-input" name='input' type="text" Placeholder="Enter Date"/>
-</div>
+      <div class="e-input-group">
+            <input class="e-input" name='input' type="text" placeholder="Enter Date"/>
+      </div>
 ```
 
-**Floating label:**
+Floating label:
 
 * Add the `e-float-input` class to the parent div element.
 
@@ -30,127 +30,175 @@ The following section explains you the steps required to create TextBox with `ic
 
 * Place the label element with class `e-float-text` after the above created span element. When you focus or filled with value in the TextBox, the label floats above the TextBox.
 
-> Creating the Floating label TextBox, you have to set the `required` attribute to the Input element to achieve the floating label functionality which is used for validating the value existence in TextBox.
+> Creating the Floating label TextBox, you have to set the `required` attribute to the Input element to achieve the floating label functionality which is used for validating the value existence in TextBox. If you want to render the Floating label TextBox without
+`required` attribute then refer to the [Floating label without required attribute](#floating-label-without-required-attribute) section.
 
 ```html
-<div class="e-float-input e-input-group">
-    <input type="text" required/>
-    <span class="e-float-line"></span>
-    <label class="e-float-text">Enter Name </label>
-</div>
+        <div class="e-float-input e-input-group">
+            <input type="text" required/>
+            <span class="e-float-line"></span>
+            <label class="e-float-text">Enter Name </label>
+        </div>
 ```
 
-Refer to the following sections to add the icons to the TextBox.
+And refer to the following sections to add the icons to the TextBox.
 
 ## With icon and floating label
 
-Create an icon element as a span with the class `e-input-group-icon`, and the users can place the icon in either side of TextBox by adding the created icon element before/after the input.
+Create an icon element as a span with the class `e-input-group-icon`, and the user can place the icon in either side of TextBox by adding the created icon element before/after the input.
 
-For the floating label enabled TextBox add the icon element as first or last element inside the TextBox wrapper, and based on the element position, it will act as prefix or suffix icon.
+For the floating label enabled TextBox add the icon element as first or last element inside the TextBox wrapper, and based on the element position it will act as prefix or suffix icon.
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+{% tab template= "textbox/icon-floating", sourceFiles="index.html,index.ts,index.css", es5Template="icon-template" %}
 
-<label> Input with icons </label>
-<div class="@(TextClass)">
-    <div class="e-input-in-wrap">
-        <input class="e-input" type="text" Placeholder="Enter Date" @onfocus="@Focus" @onblur="@Blur" />
-        <span class="e-input-group-icon e-input-date"></span>
-    </div>
-</div>
+```html
 
-<label> Floating label with icons </label>
-<div class="@(FloatTextClass) e-input-group e-float-icon-left">
-    <div class="e-input-in-wrap">
-        <input required type="text" @onfocus="@FlaotFocus" @onblur="@FloatBlur" />
-        <span class="e-float-line"></span>
-        <label class="e-float-text"> Enter Date </label>
-        <span class="e-input-group-icon e-input-date"></span>
-    </div>
-</div>
+        <h4> TextBox with icons </h4>
 
-<style>
-.e-input-group-icon:before {
-  font-family: e-icons;
-}
+        <div class="e-input-group">
+          <input class="e-input" type="text" placeholder="Enter Date"/>
+          <span class="e-input-group-icon e-input-popup-date"></span>
+        </div>
 
-.e-input-group .e-input-group-icon.e-input-date {
-  font-size:16px;
-}
+        <div class="e-input-group e-float-icon-left">
+          <span class="e-input-group-icon e-input-date"></span>
+          <div class="e-input-in-wrap">
+            <input class="e-input" type="text" placeholder="Enter Date"/>
+          </div>
+        </div>
 
-.e-input-group-icon.e-input-date:before {
-  content: "";
-}
-</style>
+        <div class="e-input-group e-float-icon-left">
+          <span class="e-input-group-icon e-input-date"></span>
+          <div class="e-input-in-wrap">
+            <input class="e-input" type="text" placeholder="Enter Date"/>
+            <span class="e-input-group-icon e-input-down"></span>
+          </div>
+        </div>
 
-@code {
-    private string FocusClass { get; set; } = " e-input-focus";
-    private string TextClass { get; set; } = "e-input-group";
-    private string FloatTextClass { get; set; } = "e-float-input";
-    private void Focus(FocusEventArgs args)
-    {
-        this.TextClass = this.TextClass + FocusClass;
-        StateHasChanged();
-    }
+        <h4> Floating label with icons </h4>
 
-    private void FlaotFocus(FocusEventArgs args)
-    {
-        this.FloatTextClass = this.FloatTextClass + FocusClass;
-        StateHasChanged();
-    }
+        <div class="e-float-input e-input-group">
+            <input required type="text" />
+            <span class="e-float-line"></span>
+            <label class="e-float-text"> Enter Date </label>
+            <span class="e-input-group-icon e-input-popup-date"></span>
+        </div>
 
-    private void Blur(FocusEventArgs args)
-    {
-       if (this.TextClass.Contains(FocusClass)) {
-            this.TextClass = this.TextClass.Replace(FocusClass, "");
-        }
-        StateHasChanged();
-    }
+        <div class="e-float-input e-input-group e-float-icon-left">
+            <span class="e-input-group-icon e-input-date"></span>
+            <div class="e-input-in-wrap">
+                <input required type="text" />
+                <span class="e-float-line"></span>
+                <label class="e-float-text"> Enter Date </label>
+            </div>
+        </div>
 
-    private void FloatBlur(FocusEventArgs args)
-    {
-       if (this.FloatTextClass.Contains(FocusClass)) {
-            this.FloatTextClass = this.FloatTextClass.Replace(FocusClass, "");
-        }
-        StateHasChanged();
-    }
-}
+        <div class="e-float-input e-input-group e-float-icon-left">
+            <span class="e-input-group-icon e-input-date"></span>
+            <div class="e-input-in-wrap">
+                <input required type="text" />
+                <span class="e-float-line"></span>
+                <label class="e-float-text"> Enter Date </label>
+                <span class="e-input-group-icon e-input-down"></span>
+            </div>
+        </div>
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![textbox](./images/float_with_icons.png)
+> To place the icon on left side of the TextBox, create a div element with the class `e-input-in-wrap` as wrapper to the input element and place the `floating line`, `floating text`, and right side icon element within it. Add the `e-float-icon-left` class to the TextBox container element.
 
 ## With clear button and floating label
 
 The clear button is added to the input for clearing the value given in the TextBox.
 It is shown only when the input field has a value, otherwise not shown.
 
-You can add the clear button to the TextBox by enabling the `ShowClearButton` API.
+You can add the clear button to the TextBox by enabling the [showClearButton](../api/textbox/#showclearbutton) API in textbox
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+{% tab template= "textbox/textbox-component-clearicon", sourceFiles="index.html,index.ts,index.css", es5Template="clear-icon-template" %}
 
-<label> TextBox with clear button </label>
-<SfTextBox Placeholder="FirstName" ShowClearButton=true></SfTextBox>
-<label> Floating TextBox with clear button </label>
-<SfTextBox Placeholder="FirstName" ShowClearButton=true FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+{% endtab %}
+
+## Floating label without required attribute
+
+You can render the `Floating label TextBox` without `required` attribute by manually
+float the label above of the TextBox using input events.
+You can manually float the label above of the TextBox by adding the below list of
+classes to the floating label element. The classes are:
+
+Class Name        | Description
+------------------| -------------
+  e-label-top     | Floats the label above of the TextBox.
+  e-label-bottom  | Label to be placed as placeholder for the TextBox.
+
+{% tab template= "textbox/floating-label-02", sourceFiles="index.ts,index.html,index.css", es5Template="float-label-02-template" %}
+
+```typescript
+
+/* To get the Input element */
+let inputElement = document.getElementById('inpt1');
+
+/* Update the label position based on Input value */
+updateLabelState(inputElement.value, inputElement.parentElement.querySelector('.e-float-text'));
+
+inputElement.addEventListener("focus", function () {
+    let label = this.parentElement.querySelector('.e-float-text');
+    label.classList.add('e-label-bottom');
+    label.classList.remove('e-label-top');
+});
+
+inputElement.addEventListener("blur", function () {
+    updateLabelState(this.value, this.parentElement.querySelector('.e-float-text'));
+});
+
+inputElement.addEventListener("input", function () {
+    updateLabelState(this.value, this.parentElement.querySelector('.e-float-text'));
+});
+
+/* Update the label position based on Input value */
+
+    /* e-label-top - Floats the label above of the TextBox */
+    /* e-label-bottom - Label to be placed as placeholder for the TextBox */
+
+function updateLabelState(value,label) {
+    if (value) {
+        label.classList.add('e-label-top');
+        label.classList.remove('e-label-bottom');
+    } else {
+        label.classList.add('e-label-bottom');
+        label.classList.remove('e-label-top');
+    }
+}
+
 ```
 
-The output will be as follows.
-
-![textbox](./images/clear_icon.png)
+{% endtab %}
 
 ## Multi-line input with floating label
 
-The following example demonstrates how to set [Multiline](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Inputs.SfTextBox~Multiline.html) in the `TextBox` component with float label structure.
+Add the HTML textarea element with the `e-input` class to create default multi-line input.
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+Add the floating label support to the `multi-line input` by creating the floating label structure as defined in the initial section.
 
-<SfTextBox Placeholder="Enter text" Multiline=true FloatLabelType="@FloatLabelType.Auto"></SfTextBox>
+{% tab template= "textbox/getting-started-html", sourceFiles="index.html,index.ts", es5Template="basic-template" %}
+
+```html
+
+        <textarea class="e-input"> Address </textarea>
+
+        <div class="e-float-input">
+            <textarea required></textarea>
+            <span class="e-float-line"></span>
+            <label class="e-float-text"> Address </label>
+        </div>
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![textbox](./images/multiline.png)
+## See Also
+
+* [How to add floating label to TextBox programmatically](./how-to/add-floating-label-to-textbox-programmatically)
+* [Change the floating label color of the TextBox](./how-to/change-the-floating-label-color-of-the-textbox)
+* [Change the color of the TextBox based on its value](./how-to/change-the-color-of-the-textbox-based-on-its-value)

@@ -1,20 +1,25 @@
 ---
 title: "Set the read-only TextBox"
 component: "Textbox"
-description: "Explains how to control the read-only state of the text box component."
+description: "Covers customization of the text box component such as a rounded corner, disabled, read-only state, background color, and font color."
 ---
 
 # Set the read-only TextBox
 
-The following example demonstrates how to set `Readonly` in TextBox Component.
-You can achieve this by using [Readonly](https://help.syncfusion.com/cr/cref_files/aspnetcore-js2/aspnetcore/Syncfusion~Syncfusion.Calendars.DatePicker~Readonly.html) property.
+You can make the TextBox as `read-only` by setting the `readonly` attribute to the input element.
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+{% tab template= "textbox/getting-started-html", sourceFiles="index.html,index.ts", es5Template="basic-template" %}
 
-<SfTextBox Placeholder='First Name' Readonly=true></SfTextBox>
+```html
+
+        <input class="e-input" type="text" placeholder="Enter Name" value="John" readonly/>
+
+        <div class="e-float-input">
+            <input type='text' required readonly value="John"/>
+            <span class="e-float-line"></span>
+            <label class="e-float-text e-label-top">Enter Name</label>
+        </div>
+
 ```
 
-The output will be as follows.
-
-![textbox](../images/disabled.png)
+{% endtab %}

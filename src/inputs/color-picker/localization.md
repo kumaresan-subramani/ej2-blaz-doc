@@ -1,80 +1,84 @@
+---
+title: "ColorPicker Localization"
+component: "ColorPicker"
+description: "TypeScript ColorPicker component supports localization which allows the end user to localize default text content of the colorpicker in various cultures."
+---
 
 # Localization and RTL
 
 ## Localization
 
-The `Localization` library allows you to localize default text content of the Color Picker. The Color Picker component has static text for control buttons (apply / cancel) and mode switcher that can be changed to other cultures (Arabic, Deutsch, French, etc.) by defining the locale value and translation object.
+The [`Localization`](../api/base/l10n) library allows you to localize default text content of the
+ColorPicker. The ColorPicker component has static text for `control buttons (apply / cancel)` and `mode switcher` that can be changed to other cultures (Arabic, Deutsch, French, etc.) by defining the
+[`locale`](../api/color-picker#locale) value and translation object.
 
-The following list of properties and its values are used in the Color Picker.
+The following list of properties and its values are used in the ColorPicker.
 
-| Locale key | en-US (default) |
-| ------------ | ----------------------- |
-| Apply  | Apply |
-| Cancel  | Cancel |
-| ModeSwitcher | Switch Mode |
+Locale key words |Text
+-----|-----
+Apply |Apply
+Cancel |Cancel
+ModeSwitcher |Switch Mode
 
-> To load translation object in an application, define the culture and the component locale text corresponding to the language in a separate `locale.json` file under `wwwroot` folder.
+### Loading translations
 
-`locale.json`
+To load translation object in an application use [`load`](../api/base/l10n#load) function of [`L10n`](../api/base/l10n) class.
 
-```json
+The below example demonstrates the ColorPicker in `Deutsch` culture.
 
-{
-    "de-DE": {
-    "colorpicker": {
-      "Apply": "Anwenden",
-      "Cancel": "Abbrechen",
-      "ModeSwitcher": "Modus wechseln"
+{% tab template="colorpicker/how-to", isDefaultActive = "true", sourceFiles="app.ts,index.html,styles.css", es5Template="locale-template" %}
+
+```typescript
+import { ColorPicker } from '@syncfusion/ej2-inputs';
+import { enableRipple, L10n } from '@syncfusion/ej2-base';
+
+enableRipple(true);
+
+L10n.load({
+    'de-DE': {
+        'colorpicker': {
+            "Apply": "Anwenden",
+            "Cancel": "Abbrechen",
+            "ModeSwitcher": "Modus wechseln"
+        }
     }
-    }
-}
+});
 
+let colorPicker: ColorPicker = new ColorPicker({ locale: 'de-DE' }, '#element');
 ```
 
-```csharp
+{% endtab %}
 
-@using Syncfusion.Blazor.Inputs
+## Right to Left - RTL
 
-<SfColorPicker></SfColorPicker>
+ColorPicker component has `RTL` support. It helps to render the ColorPicker from right-to-left direction.
+It improves the user experiences and accessibility for users who use right-to-left languages(Arabic, Farsi, Urdu, etc). This can be achieved by setting the [`enableRtl`](../api/color-picker#enablertl) property to `true`.
 
-@code {
-    [Inject]
-    protected IJSRuntime JsRuntime { get; set; }
+The following example illustrates how to enable right-to-left support in ColorPicker component.
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        this.JsRuntime.Sf().LoadLocaleData("wwwroot/locale.json").SetCulture("de-DE");
+{% tab template="colorpicker/rtl", sourceFiles="app.ts,index.html,styles.css", es5Template="rtl-template" %}
+
+```typescript
+import { ColorPicker } from '@syncfusion/ej2-inputs';
+import { enableRipple, L10n } from '@syncfusion/ej2-base';
+
+enableRipple(true);
+
+L10n.load({
+    'ar-AE': {
+        'colorpicker': {
+            'Apply': 'تطبيق',
+            'Cancel': 'إلغاء',
+            'ModeSwitcher': 'مفتاح كهربائي الوضع'
+        }
     }
-}
+});
 
+let colorPicker: ColorPicker = new ColorPicker({ enableRtl: true, locale: 'ar-AE' }, '#element');
 ```
 
-Output be like
-![color-picker](./images/cp-locale.png)
+{% endtab %}
 
-## RTL
+## See Also
 
-Color Picker component has `RTL` support. It helps to render the Color Picker from right-to-left direction. It improves the user experiences and accessibility for users who use right-to-left languages(Arabic, Farsi, Urdu, etc). This can be achieved by setting the [`EnableRtl`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Inputs.SfColorPicker~EnableRtl.html) property to true.
-
-In the following example Color Picker component is rendered in RTL mode with `arabic` locale.
-
-```csharp
-
-@using Syncfusion.Blazor.Inputs
-
-<SfColorPicker EnableRtl="true"></SfColorPicker>
-
-@code {
-    [Inject]
-    protected IJSRuntime JsRuntime { get; set; }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        this.JsRuntime.Sf().LoadLocaleData("wwwroot/locale.json").SetCulture("ar-AE");
-    }
-}
-
-```
-
-Output be like
-![color-picker](./images/cp-rtl.png)
+* [More information about localization](./../common/localization)

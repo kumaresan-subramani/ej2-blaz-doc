@@ -1,14 +1,19 @@
 # Hide control buttons
 
-Color Picker can be rendered without control buttons (Apply/Cancel). In this case, while selecting a color, the
-Color Picker pop-up is closed and selected color can be applied directly. To hide control buttons, set the [`ShowButtons`](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Inputs.SfColorPicker~ShowButtons.html) property to `false`.
+ColorPicker can be rendered without control buttons (Apply/Cancel). In this case, while selecting a color, the ColorPicker pop-up is closed and selected colors can be applied directly. To hide control buttons, set the [`showButtons`](../../api/color-picker#showbuttons) property to `false`.
 
-```csharp
-@using Syncfusion.Blazor.Inputs
+{% tab template="colorpicker/how-to", sourceFiles="app.ts,index.html,styles.css", es5Template="hide-ctrlbtn-template" %}
 
-<h4>Choose a color</h4>
-<SfColorPicker ShowButtons="false"></SfColorPicker>
+```typescript
+import { ColorPicker } from '@syncfusion/ej2-inputs';
+import { enableRipple } from '@syncfusion/ej2-base';
+
+enableRipple(true);
+
+let colorPicker: ColorPicker = new ColorPicker({
+    //To hide control buttons.
+    showButtons: false
+}, '#element');
 ```
 
-Output be like
-![color-picker](./../images/hide-control.png)
+{% endtab %}
