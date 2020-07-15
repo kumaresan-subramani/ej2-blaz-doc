@@ -125,3 +125,9 @@ The selected Syncfusion Blazor components and features render code added as .raz
 You can run the application and see the Syncfusion components you selected. Select a component to see component output.
 
 ![Blazor Template output page](../images/HomePage.png)
+
+You can select a culture language in combobox at top right on the page to apply the culture in the application.
+
+![Blazor Template output page](../images/Localization.png)
+
+> **Note:** Above combobox will be enabled in sample output only if localization option is selected in configuration window from Blazor Template Studio wizard.

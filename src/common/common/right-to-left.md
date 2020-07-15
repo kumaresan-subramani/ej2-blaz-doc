@@ -62,7 +62,7 @@ To control the direction of all the components in an application, import `Micros
 
 @code {
     [Inject]
-    IJSRuntime JsRuntime { get; set; }
+    SyncfusionBlazorService SyncfusionService { get; set; }
     public List<Order> Orders { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -77,7 +77,7 @@ To control the direction of all the components in an application, import `Micros
         }).ToList();
 
         //Set EnableRtl to all Syncfusion Blazor Components
-        this.JsRuntime.Sf().EnableRtl(true);
+        SyncfusionService.EnableRtl();
     }
 
     public class Order
