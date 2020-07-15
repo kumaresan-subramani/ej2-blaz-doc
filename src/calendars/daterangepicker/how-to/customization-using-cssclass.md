@@ -1,14 +1,14 @@
 ---
-title: "CssClass"
+title: "How To"
 component: "DateRangePicker"
-description: "Explains how to achieve UI level customization in the date range picker component using custom CSS styles and classes"
+description: "Miscellaneous aspects of customizing the date range picker"
 ---
 
-# Customization using CssClass
+# Customization using cssClass
 
-To customize UI, you can make use of [CssClass](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~CssClass.html) that will be added to the DateRangePicker component as the root CSS class. With this CSS class, you can override existing styles of DateRangePicker.
+To customize UI, you can make use of [`cssClass`](../../api/daterangepicker#cssclass) that will be added to the DateRangePicker component as the root CSS class. With this CSS class, you can override existing styles of DateRangePicker.
 
-Following is the list of classes that provides flexible way to customize the DateRangePicker component:
+Following is the list of classes that provides flexible way to customize the DateRangePicker component.
 
 | **Class Name** | **Description** |
 | --- | --- |
@@ -35,38 +35,18 @@ Following is the list of classes that provides flexible way to customize the Dat
 | e-selected | Applied to Calendar selected dates.|
 | e-disabled | Applied to Calendar disabled dates.|
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="daterangepicker/customcss" , sourceFiles="app.ts,index.html,styles.css",es5Template="daterangepicker-custom-template" %}
 
-<SfDateRangePicker Placeholder="Select a range" CssClass="CustomCSS" ></SfDateRangePicker>
+```typescript
 
-<style>
-     .CustomCSS .e-calendar .e-content .e-selected span.e-day,
-    .CustomCSS .e-calendar .e-content .e-selected span.e-day:hover,
-    .CustomCSS .e-calendar .e-content .e-today.e-selected:hover span.e-day,
-    .CustomCSS .e-calendar .e-content .e-today.e-selected span.e-day,
-    .CustomCSS .e-calendar .e-content .e-selected:hover span.e-day  {
-        background-color: #35b86b;
-    }
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    // set the css class.
+    cssClass:"customCSS", placeholder:"Select Range"
 
-    .CustomCSS .e-calendar .e-content .e-today span.e-day,
-    .CustomCSS .e-calendar .e-content .e-focused-date.e-today span.e-day {
-        border: 1px solid #35b86b;
-        color: #ff3337;
-    }
+});
+daterangeObject.appendTo('#element');
 
-    .CustomCSS .e-calendar .e-content .e-weekend span {
-        color: #ff3337;
-    }
-
-    .CustomCSS.e-date-range-wrapper .e-input-group-icon.e-icons.e-active,
-    .CustomCSS .e-btn.e-flat,
-    .CustomCSS .e-btn.e-flat:hover {
-        color: #35b86b;
-    }
-</style>
 ```
 
-The output will be as follows.
-
-![DateRangePicker](../images/customization_cssclass.png)
+{% endtab %}

@@ -1,32 +1,39 @@
 ---
 title: "Date Range"
 component: "Calendar"
-description: "Explains how to specify the minimum and maximum date options in the calendar to restrict the users from selecting a value out of given min/max date range."
+description: "Calendar has `min` and `max` properties which restricts the user from selecting a value out of given min/max date range"
 ---
 
 # Date Range
 
-A calendar provides an option to select a date value within a specified range by defining the [Min](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.CalendarBase%601~Min.html) and [Max](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.CalendarBase%601~Max.html) properties. The Min date should always be lesser than the Max date.
+Calendar provides an option to select a date value within a specified range by defining
+the [`min`](../api/calendar#min) and [`max`](../api/calendar#max) properties.
+The min date should always be lesser than the max date.
+If the value of `min` or `max` properties are changed through code behind, then update the `value` property to
+be set within the specified range, or else, if the value is out of specified date range and less than `min`
+date, value property will be updated with min date or the value is higher than max date, value property will
+be updated with `max` date.
 
-If the value of `Min` or `Max` properties are changed
-through code behind, then update the `Value` property to be set within the  specified range.
+The following example allows you to select a date within the range of 7th to 27th days in a month.
 
-If the value is out of specified date range and less than Min date, the `Value` property will be updated with Min date or the value is higher than Max date, the `Value` property will be updated with Max date.
+{% tab template="calendar/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html,styles.css" ,es5Template="calendar-range-template"%}
 
-The following code allows you to select a date within the range of 7th to 27th days in a month.
-
-```csharp
-@using Syncfusion.Blazor.Calendars
-
-<SfCalendar TValue="DateTime?" Min='@MinDate' Max='@MaxDate' Value='@DateValue'></SfCalendar>
-
-@code{
-    public DateTime MinDate {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,07);
-    public DateTime MaxDate {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27);
-    public DateTime? DateValue {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14);
-}
+```typescript
+import { Calendar, ChangedEventArgs } from '@syncfusion/ej2-calendars';
+//Creates a Calendar with min and max properties.
+let today: Date = new Date();
+let currentYear: number = today.getFullYear();
+let currentMonth: number = today.getMonth();
+let currentDay: number = today.getDate();
+let calendarObject: Calendar = new Calendar({
+    //sets the min date
+    min: new Date(currentYear, currentMonth, 7),
+    //sets the max date
+    max: new Date(currentYear, currentMonth, 27),
+    //sets the value
+    value: new Date(new Date().setDate(14))
+});
+calendarObject.appendTo('#element');
 ```
 
-The output will be as follows.
-
-![calendar](./images/date_range.png)
+{% endtab %}

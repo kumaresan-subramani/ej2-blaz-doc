@@ -1,28 +1,31 @@
 ---
-title: "Disabled State"
+title: "How To"
 component: "DatePicker"
-description: "Explains how to disable the user interaction on date picker component"
+description: "Miscellaneous aspects of customizing the date picker"
 ---
 
 # Disabled State
 
 To disable the DatePicker, use its
-[Enabled](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDatePicker%601~Enabled.html)
+[`enable`](../../api/datepicker#enabled)
 property.
 
-The following code demonstrates the DatePicker in
-disabled state.
+The following example demonstrates the DatePicker in
+a disabled state.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="datepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html",
+es5Template="datepicker-disabled-template" %}
 
-<SfDatePicker TValue="DateTime?" Enabled=false Value="@DateValue"></SfDatePicker>
+```typescript
 
-@code {
-    public DateTime? DateValue {get;set;} = DateTime.Now;
-}
+import { DatePicker } from '@syncfusion/ej2-calendars';
+// creates datepicker with enabled property
+let datepickerObject: DatePicker = new DatePicker({
+    // sets the enabled
+    enabled:false
+});
+datepickerObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
-
-![datepicker](../images/disabled.png)
+{% endtab %}

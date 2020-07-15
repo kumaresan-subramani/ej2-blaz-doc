@@ -1,109 +1,101 @@
 ---
 title: "Range Restriction"
-component: "DateRangePicker"
-description: "Explains how to specify min and max options in the date range picker to restrict the users from selecting a date range value out of given min/max date range."
+control: "DateRangePicker"
+description: "Date range picker has `min` and `max` properties which restricts the user from selecting a date range value out of given min/max date range"
 ---
 
 # Range Restriction
 
-Range selection in a DateRangePicker can be made-to-order with desired restrictions based on the application needs.
+Range selection in a date range picker can be made-to-order with desire restrictions based on the application needs.
 
 ## Restrict the range within a range
 
-You can restrict the minimum and maximum date that can be allowed as Start and End date in a range selection with the help of [Min](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~Min.html) and [Max](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~Max.html) properties.
-
-* `Min`: Sets the minimum date that can be selected as StartDate.
-* `Max`: Sets the maximum date that can be selected as EndDate.
+You can restrict the minimum and maximum date that can be allowed as start and end date in a range selection with the help of [`min`](../api/daterangepicker#min), [`max`](../api/daterangepicker#max) properties.
+* `min` – sets the minimum date that can be selected as startDate.
+* `max` – sets the maximum date that can be selected as endDate.
 
 In the following sample, you can select a range from 15th day of this month to 15th day of next month.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="daterangepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html", es5Template="daterangepicker-rangerestriction-template" %}
 
-<SfDateRangePicker Min='@MinDate' Max='@MaxDate'></SfDateRangePicker>
+```typescript
 
-@code {
-    public DateTime MinDate {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,15);
-    public DateTime MaxDate {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, 15);
-}
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+let today: Date = new Date();
+let currentYear: number = today.getFullYear();
+let currentMonth: number = today.getMonth();
+let currentDay: number = today.getDate();
+// creates a daterangepicker with min max property
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    //sets the min.
+    min: new Date(currentYear, currentMonth, 15),
+    //sets the max.
+    max: new Date(currentYear, currentMonth+1, 15),
+    placeholder:"Select a Range"
+
+});
+daterangeObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![daterangepicker](./images/date-range.png)
+> If the value of `min` or `max` properties
+changed through code behind, then you have to
+update the `start date`, `end date` property to set within the
+range. Or else , if the `start` and `end` date is out of specified date range, a validation error class will
+be appended to the input element. If `strictMode` is enabled, and both the start, end date is lesser than the
+min date then start and end date will be updated with `min` date. If both the start and end date is higher
+than the max date then start and end date will be updated with `max` date. Or else, if startDate is less than
+`min` date, startDate will be updated with `min` date or if endDate is greater than `max` date, endDate will be updated with the `max` date.
 
 ## Range span
 
-Span between ranges can be limited to avoid excess or less days selection towards the required days in a range.
-In this, minimum and maximum span allowed within the date range can be customized by the [MinDays](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~MinDays.html) and [MaxDays](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~MaxDays.html) properties.
+Days span between ranges can be limited in order to avoid excess or less days selection towards the required days in a range.
+In this, minimum and maximum span allowed within the date range can be customized by [`minDays`](../api/daterangepicker#mindays) and [`maxDays`](../api/daterangepicker#maxdays) properties.
+* minDays- Sets the minimum number of days between start and end date.
+* maxDays- Sets the maximum number of days between start and end date.
+In the following sample, the range selection should be greater than 3 days and less than 8 days else it will not set.
 
-* `MinDays`: Sets the minimum number of days between Start and EndDate.
-* `MaxDays`: Sets the maximum number of days between Start and EndDate.
+{% tab template="daterangepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html" ,es5Template="daterangepicker-rangespan-template"%}
 
-In the following sample, the range selection should be greater than 5 days and less than 10 days, else it will not set.
+```typescript
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+let today: Date = new Date();
+let currentYear: number = today.getFullYear();
+let currentMonth: number = today.getMonth();
+let currentDay: number = today.getDate();
+// creates a daterangepicker with min max property
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    //sets the minimum number of days
+    minDays: 4,
+    //sets the maximum number of days
+    maxDays: 7,
+    placeholder:"Select a Range"
+});
+daterangeObject.appendTo('#element');
 
-<SfDateRangePicker MinDays=5 MaxDays=10 Placeholder='Select a range'>
-</SfDateRangePicker>
 ```
 
-The output will be as follows.
-
-![daterangepicker](./images/range_span.png)
+{% endtab %}
 
 ## Strict mode
 
-DateRangePicker provides an option to limit the user towards entering the valid date. With `StrictMode`, you can set only the valid date. If any invalid range is specified, the date range value resets to previous value. This restriction can be availed by setting the [StrictMode](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~StartDate.html) property to true.
+DateRangePicker provides an option to limit the user towards entering the valid date.  With strict mode, you can set only the valid date. If any invalid range is specified, the date range value resets to previous value. This restriction can be availed by enabling [`strictMode`](../api/daterangepicker#strictmode) property as true.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="daterangepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html" ,es5Template="daterangepicker-strictmode-template"%}
 
-<SfDateRangePicker StartDate='@Start' EndDate='@End' StrictMode=true Min='@MinDate' Max='@MaxDate'></SfDateRangePicker>
+```typescript
 
-@code {
-    public DateTime MinDate {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,15);
-    public DateTime MaxDate {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, 15);
-    public DateTime Start {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,20);
-    public DateTime End {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, 25);
-}
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+// creates a daterangepicker in strict mode
+let daterangeObject: DateRangePicker = new DateRangePicker({
+        //enabling strict mode
+        strictMode: true, placeholder:"Select a Range"
+});
+daterangeObject.appendTo('#element');
+
 ```
 
-If the value of `Min` or `Max` property
-is changed through code behind, update the `StartDate` and `EndDate` properties to set within the range.
-
-If the Start and End date is out of specified date range, a validation error class will be appended to the input element. If `StrictMode` is enabled and both the Start and End date is lesser than the Min date, then the Start and End date will be updated with Min date.
-
-If both the Start and End date is higher than the Max date, then Start and End date will be updated with Max date.
-
-If StartDate is less than Min date, it will be updated with Min date or if EndDate is greater than Max date,  will be updated with the Max date.
-
-The output will be as follows.
-
-![daterangepicker](./images/strict_mode.png)
-
-By default, the DatePicker acts in `StrictMode` false state that allows you to enter the invalid or out-of-range date in text box.
-
-If the Start and End date is out of specified date range or invalid, then the model value will be set to `out of range`
-value or `null` respectively with highlighted  `error` class to indicate the value is out of range or invalid.
-
-The following code demonstrates the `StrictMode` as false. Here, it allows you to enter the
-valid or invalid value in text box.
-
-```csharp
-@using Syncfusion.Blazor.Calendars
-
-<SfDateRangePicker StartDate='@Start' EndDate='@End' StrictMode=false Min='@MinDate' Max='@MaxDate'></SfDateRangePicker>
-
-@code {
-    public DateTime MinDate {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,15);
-    public DateTime MaxDate {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, 15);
-    public DateTime Start {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,20);
-    public DateTime End {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, 25);
-}
-```
-
-The output will be as follows.
-
-![datepicker](./images/strict_mode_false.png)
+{% endtab %}

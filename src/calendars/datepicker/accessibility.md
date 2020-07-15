@@ -1,90 +1,96 @@
 ---
 title: "Accessibility"
 component: "DatePicker"
-description: "Explains the web accessibility support that helps to access all the features using keyboard, on-screen readers, or other assertive technology devices."
+description: "Date picker component support accessibility that helps to access all the features through the keyboard, on-screen readers, or other assertive technology devices."
 ---
 
 # Accessibility
 
-The web accessibility defines a way to make web content and web applications
+The Web accessibility defines a way to make web content and web applications
 more accessible to disabled people. It especially helps the dynamic content change
-and advanced user interface components developed with Ajax, HTML, JavaScript, and related technologies.
+and advanced user interface controls developed with Ajax, HTML, JavaScript, and related technologies.
 
-The DatePicker provides built-in compliance with the
+DatePicker provides built-in compliance with the
 [WAI-ARIA](http://www.w3.org/WAI/PF/aria-practices) specifications. WAI-ARIA
-supports can be achieved through the attributes
-like `aria-expanded`, `aria-disabled`, and `aria-activedescendant`
+supports is achieved through the attributes
+like `aria-expanded`, `aria-disabled`, `aria-activedescendant`
 applied to the input element.
 
-To learn more about the accessibility of Calendar, refer to the Calendar's
-[Accessibility](../calendar/accessibility/)
- section.
+To know about the accessibility of Calendar refer to the Calendar's
+[Accessibility](../calendar/accessibility/) section.
 
-It provides information about the widget
+It helps to provide information about the widget
 for assistive technology to the disabled person in
 screen reader.
 
-* **aria-expanded**: Attribute indicates the state of a collapsible element.
+* **Aria-expanded**: attributes indicates the state of a collapsible element.
 
-* **aria-disabled**: Attribute indicates the disabled state of this DatePicker component.
+* **Aria-disabled**: attribute indicates the disabled state of this DatePicker component.
 
-* **aria-activedescendent**: Attribute helps in managing the current active child of the DatePicker component.
+* **Aria-activedescendent**: attribute helps in managing the current active child of the DatePicker component.
 
-## Keyboard interaction
+## Keyboard Interaction
 
 You can use the following keys to interact with the DatePicker.
 The component implements the keyboard navigation support by following the  [WAI-ARIA practices](http://www.w3.org/WAI/PF/aria-practices).
 
-It supports the following list of shortcut keys:
+It supports the below list of shortcut keys.
 
-### Input navigation
+Input Navigation
 
-Before opening the pop-up, use the following list of keys to
-control the pop-up element:
+Before opening the popup, use the below list of keys to
+control the popup element.
 
-| **Keys** | **Description** |
+| **Press** | **To do this** |
 | --- | --- |
 | <kbd>Alt +  Down Arrow</kbd> | Opens the popup. |
-| <kbd>Alt +  Upper Arrow</kbd> | Closes the popup.|
-| <kbd>Esc</kbd> | Closes the popup. |
+| <kbd>Alt +  Up Arrow</kbd> | Closes the popup.|
+| <kbd>Esc</kbd> | closes the popup. |
 
-### Calendar Navigation
+Calendar Navigation
 
-Use the following list of keys to navigate the Calendar after the pop-up has been opened:
+Use the below list of keys to navigate the Calendar after the popup has opened.
 
-| **keys** | **Description** |
+| **Press** | **To do this** |
 | --- | --- |
-| <kbd>Upper Arrow</kbd>  | Focuses the previous week date. |
-| <kbd>Down Arrow</kbd>  | Focuses the next week date. |
-| <kbd>Left Arrow</kbd>  | Focuses the previous date. |
-| <kbd>Right Arrow</kbd>  | Focuses the next date. |
-| <kbd>Home</kbd>  | Focuses the first date in the month. |
-| <kbd>End</kbd>  | Focuses the last date in the month. |
-| <kbd>Page Up</kbd>  | Focuses the same date in the previous month. |
-| <kbd>Page Down</kbd>  | Focuses the same date in the next month. |
-| <kbd>Enter</kbd>  | Selects the currently focused date. |
-| <kbd>Shift + Page Up</kbd>  | Focuses the same date in the previous year. |
-| <kbd>Shift + Page Down</kbd>  | Focuses the same date in the previous year. |
-| <kbd>Control + Upper Arrow</kbd>  | Moves into the inner level of view like month-year and year-decade |
-| <kbd>Control + Down Arrow</kbd>  | Moves out from the depth level view like decade-year and year-month |
-| <kbd>Control +Home</kbd>  | Focuses the starting date in the current year. |
-| <kbd>Control +End</kbd>  | Focuses the ending date in the current year. |
+| <kbd>Upper Arrow</kbd>  | Focus the previous week date. |
+| <kbd>Down Arrow</kbd>  | Focus the next week date. |
+| <kbd>Left Arrow</kbd>  | Focus the previous date. |
+| <kbd>Right Arrow</kbd>  | Focus the next date. |
+| <kbd>Home</kbd>  | Focus the first date in the month. |
+| <kbd>End</kbd>  | Focus the last date in the month. |
+| <kbd>Page Up</kbd>  | Focus the same date in the previous month. |
+| <kbd>Page Down</kbd>  | Focus the same date in the next month. |
+| <kbd>Enter</kbd>  | Select the currently focused date. |
+| <kbd>Shift + Page Up</kbd>  | Focus the same date in the previous year. |
+| <kbd>Shift + Page Down</kbd>  | Focus the same date in the previous year. |
+| <kbd>Control + Upper Arrow</kbd>  | Moves into the inner level of view like month-year, year-decade |
+| <kbd>Control + Down Arrow</kbd>  | Moves out from the depth level view like decade-year, year-month |
+| <kbd>Control + Home</kbd>  | Focus the starting date in the current year. |
+| <kbd>Control + End</kbd>  | Focus the ending date in the current year. |
 
-> To focusout the DatePicker component, use the `t` keys. For additional information about native event, [click](./native-events/) here.
+> To focus the DatePicker component use the `alt+t` keys.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="datepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html",
+es5Template="datepicker-accessibility-template"%}
 
-<SfDatePicker TValue="DateTime?" @onkeypress="@(e => KeyPressed(e))" @ref="DateObj"></SfDatePicker>
+```typescript
 
-@code {
-    public SfDatePicker DateObj;
-    public void KeyPressed(KeyboardEventArgs args)
-    {
-        if (args.Key == "t")
-        {
-            this.DateObj.FocusOut();
-        }
+import { DatePicker } from '@syncfusion/ej2-calendars';
+// creates a  DatePicker component
+let datepickerObject: DatePicker = new DatePicker({
+    // sets the placeholder
+    placeholder: 'Enter date'
+    });
+datepickerObject.appendTo('#element');
+
+document.onkeyup = function (e) {
+    if (e.altKey && e.keyCode === 84 /* t */) {
+        // press alt+t to focus the component.
+        datepickerObject.element.focus();
     }
-}
+};
+
 ```
+
+{% endtab %}

@@ -1,17 +1,17 @@
 ---
-title: "CssClass"
+title: "How To"
 component: "TimePicker"
-description: "Explains how to achieve UI level customization in the time picker component using custom CSS styles and classes."
+description: "Miscellaneous aspects of customizing the time picker"
 ---
 
 # CSS customization
 
-TimePicker allows you to customize the text box and popup list appearance to suit your
-application by using the
-[CssClass](https://help.syncfusion.com/cr/cref_files/aspnetcore-js2/aspnetcore/Syncfusion~Syncfusion.Calendars.TimePicker~CssClass.html) property.
+TimePicker allows you to customize the textbox and popup list appearance to suit your
+application by using
+[`cssClass`](../../api/timepicker#cssclass) property.
 
-The following code demonstrates customization of text appearance in a text box, popup button, and popup list along with hover and active
-state by using the `e-custom-style` class. Following is the list of available classes used to customize the entire TimePicker component:
+The below sample demonstrates customization of text appearance in a textbox, popup button, and popup list along with hover and active
+state by using `e-custom-style` class. Following is the list of available classes used to customize the entire TimePicker component.
 
 | **Class Name** | **Description** |
 | --- | --- |
@@ -28,52 +28,24 @@ state by using the `e-custom-style` class. Following is the list of available cl
 | e-hover | Applied to LI element hovering time. |
 | e-active | Applied to active LI element. |
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="timepicker/how-to", isDefaultActive = "true", sourceFiles="app.ts,index.html,style.css",
+es5Template="timepicker-customcss-template" %}
 
-<SfTimePicker TValue="DateTime?" CssClass="e-custom-style" Placeholder="Select a Time"></SfTimePicker>
+```typescript
+    import { TimePicker } from '@syncfusion/ej2-calendars';
+    import { enableRipple } from '@syncfusion/ej2-base';
 
-<style>
-     /*customize the input element text color*/
-    .e-time-wrapper.e-custom-style #element {
-        display: block;
-        color: blue;
-    }
+    //enable ripple style
+    enableRipple(true);
 
-    /*customize the floating label and popup button text color*/
-    .e-time-wrapper.e-custom-style .e-float-text.e-label-bottom,
-    .e-time-wrapper.e-custom-style .e-input-group-icon.e-time-icon.e-icons {
-        color: blue;
-    }
+    // creates timepicker
+    let timeObject: TimePicker = new TimePicker({
+        placeholder:'Select Time',
+        // define the custom class
+        cssClass: 'e-custom-style'
+    });
+    timeObject.appendTo('#element');
 
-    /*customize the input element text selection*/
-    .e-time-wrapper.e-custom-style.e-input-group::before,
-    .e-time-wrapper.e-custom-style.e-input-group::after,
-    .e-time-wrapper.e-custom-style.e-input-group .e-timepicker::selection {
-        background: blue;
-    }
-
-
-    .e-timepicker.e-popup.e-custom-style .e-list-parent.e-ul,
-    .e-timepicker.e-popup.e-custom-style .e-list-parent.e-ul .e-list-item {
-        background-color: #c0ebff;
-    }
-
-        /*customize the list item hover color*/
-    .e-timepicker.e-popup.e-custom-style .e-list-parent.e-ul .e-list-item.e-hover,
-    .e-timepicker.e-popup.e-custom-style .e-list-parent.e-ul .e-list-item.e-active.e-hover {
-        background-color: blue;
-        color: #fff;
-    }
-
-        /*customize the active element text color*/
-    .e-timepicker.e-popup.e-custom-style .e-list-parent.e-ul .e-list-item.e-active {
-        color: #333;
-        background-color: #fff;
-    }
-</style>
 ```
 
-The output will be as follows.
-
-![TimePicker](../images/customization.png)
+{% endtab %}

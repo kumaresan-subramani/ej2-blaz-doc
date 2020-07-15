@@ -1,36 +1,31 @@
 ---
-title: "Readonly"
+title: "How To"
 component: "DatePicker"
-description: "Explains how to control the read-only state of the date picker component."
+description: "Miscellaneous aspects of customizing the date picker"
 ---
 
-# Set the Readonly
+# Set the readonly
 
-## Enabled
+The following example demonstrates how to set `readonly` in DatePicker component.
+You can achieve this by using [`readonly`](../../api/datepicker#readonly) property.
 
-By default, the Enabled property is true, it specifies the input can be focused, editable, and allows you to select date from the popup. But when enabled property is false, the input is not focusable, non-editable and cannot open the popup.
+{% tab template="datepicker/getting-started" , sourceFiles="app.ts,index.html"
+,es5Template="datepicker-readonly-template" %}
 
-## AllowEdit
+```typescript
 
-By default, the AllowEdit property is true, it allows the textbox input to be changed as well as the user can select the value from the popup and false state defines the input is not editable but allows to select the value from the popup.
+import { DatePicker } from '@syncfusion/ej2-calendars';
+// creates datepicker with readonly.
+let datepickerObject: DatePicker = new DatePicker({
+    // sets the readonly.
+    readonly:true,
+    // sets the value.
+    value:new Date(),
+    // sets the palceholder property.
+    placeholder:'Enter date'
+});
+datepickerObject.appendTo('#element');
 
-## Readonly
-
-By default, the Readonly property is false, it allows the input to be editable, and also allows value selection from the popup, and the true state does not allow user input, nor does it open popup, but the input can be focused. If you want to use the property Readonly, then you must disable the AllowEdit API.
-
-The following code demonstrates how to set `Readonly` in DatePicker component.
-You can achieve this by using the [Readonly](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDatePicker%601~Readonly.html) and [AllowEdit](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDatePicker%601~AllowEdit.html) property.
-
-```csharp
-@using Syncfusion.Blazor.Calendars
-
-<SfDatePicker TValue="DateTime?" AllowEdit="false" Readonly=true Value="@DateValue"></SfDatePicker>
-
-@code {
-    public DateTime? DateValue { get; set; } = DateTime.Now;
-}
 ```
 
-The output will be as follows.
-
-![datepicker](../images/readonly.png)
+{% endtab %}

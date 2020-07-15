@@ -1,30 +1,31 @@
 ---
-title: "Open popup"
+title: "How To"
 component: "DatePicker"
-description: "Explains how to open the DatePicker popup when the input is focused"
+description: "Miscellaneous aspects of customizing the date picker"
 ---
 
-# Open the DatePicker popup upon focusing input of DatePicker
+# Open the DatePicker popup upon input click
 
-You can open the DatePicker popup on input focus by calling the `show` method in the input `focus` event.
+To open the DatePicker popup upon input click by using `show` method in the `focus` event.
 
-The following example demonstrates how to open the DatePicker popup when the input is focused.
+The following example demonstrates how to open the DatePicker popup upon focus the input.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="datepicker/open-popup" , sourceFiles="app.ts,index.html",
+es5Template="datepicker-open-popup-template" %}
 
-<SfDatePicker TValue="DateTime?" @ref="@DateObj">
-    <DatePickerEvents TValue="DateTime?" Focus="FocusHandler"></DatePickerEvents>
-</SfDatePicker>
+```typescript
 
-@code{
-    SfDatePicker<DateTime?> DateObj;
-    public void FocusHandler(Syncfusion.Blazor.Calendars.FocusEventArgs args)    {
-        this.DateObj.Show();
-    }
-}
+import { DatePicker } from '@syncfusion/ej2-calendars';
+// creates datepicker component
+let datepickerObject: DatePicker = new DatePicker({
+    focus: function () {
+        // To open the popup upon input click
+        datepickerObject.show();
+    },
+    // sets the palceholder property.
+    placeholder: 'Enter date'
+});
+datepickerObject.appendTo('#element');
 ```
 
-The output will be as follows.
-
-![datepicker](../images/openpopup.png)
+{% endtab %}

@@ -1,21 +1,27 @@
 ---
-title: "Placeholder"
+title: "How To"
 component: "DateRangePicker"
-description: "Explains how to control read-only state of the date range picker component."
+description: "Miscellaneous aspects of customizing the date range picker"
 ---
 
-# Set the Placeholder
+# Set the placeholder
 
-The following code demonstrates how to set [Placeholder](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~Placeholder.html) in the DateRangePicker component.
+The following example demonstrates how to set [`placeholder`](../../api/daterangepicker#placeholder) in the DateRangePicker control.
 
-Using `Placeholder`, you can display a short hint in the input element.
+Using `placeholder` you can display a short hint in the input element.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="daterangepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html" ,es5Template="daterangepicker-placeholder-template"%}
 
-<SfDateRangePicker Placeholder="Choose a date range"></SfDateRangePicker>
+```typescript
+
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+// creates DateRangePicker with placeholder.
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    // sets the placeholder property.
+    placeholder:'Select a range'
+});
+daterangeObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
-
-![DateRangePicker](../images/placeholder.png)
+{% endtab %}

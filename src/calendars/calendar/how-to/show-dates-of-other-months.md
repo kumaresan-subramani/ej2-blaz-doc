@@ -1,37 +1,37 @@
 ---
-title: "Other month dates"
+title: "How To"
 component: "Calendar"
-description: "Explains how to show other month dates in the calendar component."
+description: "Miscellaneous aspects of customizing the calendar"
 ---
 
-# Show Dates of Other Months
+# Show dates of other months
 
-The following code demonstrates how to show dates of other months.
+The following example demonstrates how to show dates of other months.
 
 Using the styles below, you can bring the dates of other months to visibility from its hidden state.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+```css
+.e-calendar .e-content tr.e-month-hide,
+.e-calendar .e-content td.e-other-month>span.e-day {
+    display: block;
+}
 
-<SfCalendar TValue="DateTime?"></SfCalendar>
-
-<style>
-    .e-control.e-calendar {
-        max-width: 260px;
-    }
-    .e-calendar .e-content tr.e-month-hide,
-    .e-calendar .e-content td.e-other-month>span.e-day {
-        display: block;
-    }
-
-    .e-calendar .e-content td.e-month-hide,
-    .e-calendar .e-content td.e-other-month {
-        pointer-events: auto;
-        touch-action: auto;
-    }
-</style>
+.e-calendar .e-content td.e-month-hide,
+.e-calendar .e-content td.e-other-month {
+    pointer-events: auto;
+    touch-action: auto;
+}
 ```
 
-The output will be as follows.
+{% tab template="calendar/how-to-othermonth", sourceFiles="app.ts,index.html,styles.css"
+,es5Template="calendar-othermonth-template" %}
 
-![calendar](../images/other_month.png)
+```typescript
+import { Calendar } from '@syncfusion/ej2-calendars';
+//creates a calendar with dates of other months shown.
+let calendarObject: Calendar = new Calendar({
+});
+calendarObject.appendTo('#element');
+```
+
+{% endtab %}

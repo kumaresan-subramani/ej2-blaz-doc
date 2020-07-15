@@ -1,27 +1,35 @@
 ---
 title: "Multi Selection"
 component: Calendar
-description: "Explains how to achieve the multiple date selection in the calendar component to select single or multiple date values (sequence or random date selection)."
+description: "Calendar supports multiple date selection to allow users to select more than one date."
 ---
-
 # Multi Selection
 
-A calendar provides an option to select **single** or **multiple dates** by using the [IsMultiSelection](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfCalendar%601~Values.html) properties. By default, the IsMultiSelection property will be in disabled state.
+Calendar provides an option to select **single** or **multiple dates** by using `isMultiSelection` and `values` properties. By default, `isMultiSelection` property will be in disabled state.
 
-The following code demonstrates the functionality of IsMultiSelection and Values properties in the Calendar component.
+| API | Type | Description |
+|------|------|----------------------|
+| `isMultiSelection`| **Boolean**| Enables the multi-selection option in the Calendar control |
+|`values`| **Date[]** | Gets or sets the date range values in multi-selection option |
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+The following example demonstrates the functionality of  `isMultiSelection` property and `values` properties in the Calendar control.
 
-<SfCalendar TValue="DateTime?" IsMultiSelection=true Values="@MultipleValues"></SfCalendar>
+{% tab template="calendar/getting-started", sourceFiles="app.ts,index.html,styles.css",es5Template="calendar-multiselect-template" %}
 
-@code {
-public DateTime[] MultipleValues { get; set; } = new DateTime[] { new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10),
-        new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15),
-        new DateTime(DateTime.Now.Year, DateTime.Now.Month, 25) };
-}
+```typescript
+import { Calendar } from '@syncfusion/ej2-calendars';
+
+/*Initialize the calender component*/
+let calendar: Calendar = new Calendar({
+    isMultiSelection: true,
+    values: [new Date('1/1/2020'), new Date('1/15/2020'), new Date('1/3/2020'), new Date('1/25/2020')]
+});
+calendar.appendTo('#element');
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![calendar](./images/multi-selection.png)
+## See Also
+
+* [Select a sequence of dates in Calendar](./how-to/select-a-sequence-of-dates-in-calendar)

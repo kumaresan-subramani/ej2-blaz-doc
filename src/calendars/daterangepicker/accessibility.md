@@ -1,7 +1,7 @@
 ---
 title: "Accessibility"
 component: "DateRangePicker"
-description: "Explain the web accessibility support that helps to access all the features using keyboard, on-screen readers, or other assertive technology devices."
+description: "Date range picker component support accessibility that helps to access all the features through the keyboard, on-screen readers, or other assertive technology devices."
 ---
 
 # Accessibility
@@ -12,38 +12,38 @@ support is achieved through the attributes
 like `aria-expanded`, `aria-disabled`, and `aria-activedescendant`
 applied as an input element.
 
-To learn about the accessibility of Calendar, refer to the Calendar's
-[Accessibility](../calendar/accessibility/)  section.
+To know about the accessibility of Calendar, refer to the Calendar's
+[Accessibility](../calendar/accessibility/) section.
 
 It helps people with disabilities by providing information about the widget for assistive technology in the screen readers. DateRangePicker component contains grid role and grid cell for each day cell.
 
-* **aria-expanded**: Indicates the currently selected date of the DateRangePicker component.
+* **Aria-expanded**: Indicates the currently selected date of the DateRangePicker component.
 
-* **aria-disabled**: Indicates the disabled state of the DateRangePicker component.
+* **Aria-disabled**:  Indicates the disabled state of the DateRangePicker component.
 
-## Keyboard interaction
+## Keyboard Interaction
 
-Use the following keys to interact with the DateRangePicker.
+Use the below keys to interact with the DateRangePicker.
 This component implements the keyboard navigation support by following the  [WAI-ARIA practices](http://www.w3.org/WAI/PF/aria-practices).
 
 It supports the following list of shortcut keys:
 
-### Input navigation
+Input Navigation
 
 Before opening the popup, use the following list of keys to
 control the popup element.
 
-| **Keys** | **Explanation** |
+| **Press** | **To do this** |
 | --- | --- |
 | <kbd>Alt +  Down Arrow</kbd> | Opens the popup. |
-| <kbd>Alt +  Upper Arrow</kbd> | Closes the popup.|
+| <kbd>Alt +  Up Arrow</kbd> | Closes the popup.|
 | <kbd>Esc</kbd> | Closes the popup. |
 
-### Calendar navigation
+Calendar Navigation
 
-Use the following list of keys to navigate the currently focused Calendar after the popup has opened:
+Use the following list of keys to navigate the currently focused Calendar after the popup has opened.
 
-| **Keys** | **Explanation** |
+| **Press** | **To do this** |
 | --- | --- |
 | <kbd>Upper Arrow</kbd>  | Focuses the same day of the previous week. |
 | <kbd>Down Arrow</kbd>  | Focuses the same day of the next week. |
@@ -61,21 +61,27 @@ Use the following list of keys to navigate the currently focused Calendar after 
 | <kbd>Alt + Right</kbd>  | Focuses through out the pop-up container in forward direction. |
 | <kbd>Alt + Left</kbd>  | Focuses through out the pop-up container in backward direction. |
 
-> To focusout the DateRangePicker component use the `t` keys. For additional information about native event, [click](./native-events/) here.
+> To focus the DateRangePicker component, use the `alt+t` keys.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="daterangepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html",es5Template="daterangepicker-accessibility-template"%}
 
-<SfDateRangePicker @onkeypress="@(e => KeyPressed(e))" @ref="RangeObj"></SfDateRangePicker>
+```typescript
 
-@code {
-    public SfDateRangePicker RangeObj;
-    public void KeyPressed(KeyboardEventArgs args)
-    {
-        if (args.Key == "t")
-        {
-            this.RangeObj.FocusOut();
-        }
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+// creates a  DateRangePicker component
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    // sets the placeholder
+    placeholder: 'Select a range'
+    });
+daterangeObject.appendTo('#element');
+
+document.onkeyup = function (e) {
+    if (e.altKey && e.keyCode === 84 /* t */) {
+        // press alt+t to focus the component.
+        daterangeObject.element.focus();
     }
-}
+};
+
 ```
+
+{% endtab %}

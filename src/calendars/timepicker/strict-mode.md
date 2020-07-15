@@ -1,69 +1,82 @@
 ---
 title: "Strict Mode"
 component: "TimePicker"
-description: "Explains how to allow the users to enter only the valid time value within the specified min/max range in time input."
+description: "The strictMode option allows the user to enter only the valid time value within the specified min/max time range in textbox."
 ---
 
-# Strict Mode
+# Strict mode
 
-The [StrictMode](https://help.syncfusion.com/cr/cref_files/aspnetcore-js2/aspnetcore/Syncfusion~Syncfusion.Calendars.TimePicker~StrictMode.html)
-is an act that allows you to enter only valid time value within the specified Min/Max
-range in the textbox. If the value is invalid, the component Value sets to the previous value.
-If the value is
-out of range, the component sets the time value to Min/Max value.
+The [`strictMode`](../api/timepicker#strictmode)
+is an act that allows you to enter only valid time value within the specified min/max
+range in the textbox. If the time value is invalid, the component value sets to the previous value.
+If the time value is
+out of range, the component sets the time value to min/max value.
 
-The following example demonstrates the TimePicker in `StrictMode` with `Min/Max` range of `10:00 AM` to
+The following example demonstrates the TimePicker in `strictMode` with min/max range of `10:00 AM` to
 `4:00 PM` . It allows you to enter
-only valid time within the specified range.
-
-If you enter the out-of-range value like
+only valid time within the specified range. If you enter the out-of-range value like
 `8:00 PM`,
-the value sets to the Max time `4:00 PM` as the value `8:00 PM` is greater than Max value
-of `4:00 PM`.
+the value sets to the max time `4:00 PM` as the value `8:00 PM` is greater than `max` value
+of `4:00 PM`. If you enter invalid time value like `9:00 tt`, the value sets to the previous value.
 
-If you enter invalid time value like `9:00 tt`, the value sets to the previous value.
+{% tab template="timepicker/getting-started",sourceFiles="app.ts,index.html",
+es5Template="timepicker-strictmodeenabled-template" %}
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+```typescript
 
-<SfTimePicker TValue="DateTime?" Value='@TimeValue' StrictMode=true Min='@MinVal' Max='@MaxVal'></SfTimePicker>
+import { TimePicker } from '@syncfusion/ej2-calendars';
+import { enableRipple } from '@syncfusion/ej2-base';
 
-@code {
-    public DateTime MinVal { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15, 08, 00, 00);
-    public DateTime MaxVal { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15, 16, 00, 00);
-    public DateTime? TimeValue { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15, 3, 00, 00);
-}
+//enable ripple style
+enableRipple(true);
+
+
+let timeObject: TimePicker = new TimePicker({
+    strictMode: true,
+    min: new Date('7/18/2017 10:00 AM'),
+    max: new Date('7/18/2017 4:00 PM'),
+    value: new Date('7/18/2017 8:00 PM'),
+
+});
+timeObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![TimePicker](./images/strictmode.png)
-
-By default, the TimePicker act in `StrictMode` as `false` state, that allows you to enter the invalid or out-of-range time in textbox.
+By default, the TimePicker act in strictMode `false` state, that allows to enter the invalid or out-of-range time in textbox.
 
 If the time is out-of-range or invalid, then the model value will be set to `out of range` time
 value or `null` respectively with highlighted `error` class to indicates the time is out of range or invalid.
 
-The following example demonstrates the `StrictMode` as `false`. Here, it allows you to enter the
-valid or invalid value in text box.
-
+The following example demonstrates the `strictMode` as `false`. Here, it allows to enter the
+valid or invalid value in textbox.
 If you are entering the out-of-range or invalid time value, then the model value will be set to
-`out of range` time Value or `null` respectively with highlighted `error` class to indicates the time is out of range or invalid.
+`out of range` time value or `null` respectively with highlighted `error` class to indicates the time is out of range or invalid.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="timepicker/getting-started" , sourceFiles="app.ts,index.html",
+es5Template="timepicker-strictmodedisabled-template" %}
 
-<SfTimePicker TValue="DateTime?" Value='@TimeValue' StrictMode=false Min='@MinVal' Max='@MaxVal'></SfTimePicker>
+```typescript
 
-@code {
-    public DateTime MinVal { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15, 08, 00, 00);
-    public DateTime MaxVal { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15, 16, 00, 00);
-    public DateTime? TimeValue { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15, 3, 00, 00);
-}
+import { TimePicker } from '@syncfusion/ej2-calendars';
+import { enableRipple } from '@syncfusion/ej2-base';
+
+//enable ripple style
+enableRipple(true);
+
+
+let timeObject: TimePicker = new TimePicker({
+    strictMode: false,
+    min: new Date('7/18/2017 10:00 AM'),
+    max: new Date('7/18/2017 4:00 PM'),
+    value: new Date('7/18/2017 8:00 PM'),
+
+});
+timeObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![TimePicker](./images/strictmode_false.png)
-
-> If the value of `Min` or `Max` property is changed through code behind, update the `Value` property to set within the range.
+> If the value of `min` or `max` property is changed through code behind, update the `value` property to set within the range.

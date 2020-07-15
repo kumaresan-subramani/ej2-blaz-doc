@@ -1,21 +1,28 @@
 ---
-title: "Placeholder"
+title: "How To"
 component: "DatePicker"
-description: "Explains how to set placeholder in the date picker component to provide a hint to the users on how to fill the input field."
+description: "Miscellaneous aspects of customizing the date picker"
 ---
 
-# Set the Placeholder
+# Set the placeholder
 
-The following example demonstrates how to set `Placeholder` in the DatePicker component.
+The following example demonstrates how to set `placholder` in the DatePicker component.
 
-Using [Placeholder](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDatePicker%601~Placeholder.html), you can display a short hint in the input element.
+Using `placeholder` you can display a short hint in the input element.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="datepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html",
+es5Template="datepicker-placeholder-template" %}
 
-<SfDatePicker TValue="DateTime?" Placeholder="Select a date"></SfDatePicker>
+```typescript
+
+import { DatePicker } from '@syncfusion/ej2-calendars';
+// creates datepicker with placeholder.
+let datepickerObject: DatePicker = new DatePicker({
+    // sets the palceholder property.
+    placeholder:'Enter date'
+});
+datepickerObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
-
-![datepicker](../images/placeholder.png)
+{% endtab %}

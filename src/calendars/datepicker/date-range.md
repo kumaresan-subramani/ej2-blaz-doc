@@ -1,62 +1,54 @@
 ---
 title: "Choose a date in range"
 component: "DatePicker"
-description: "Explains how to specify min and max date options in the date picker component to restrict the users from selecting a value out of given min/max date range."
+description: "Date picker has `min` and `max` properties which restricts the user from selecting a value out of given min/max date range"
 ---
 
 # Date Range
 
-The DatePicker provides an option to select a date value within a specified range by using the
-[Min](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.CalendarBase%601~Min.html)
+DatePicker provides an option to select a date value within a specified range by using the
+[`min`](../api/datepicker#min)
 and
-[Max](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.CalendarBase%601~Max.html)
-properties. Always the Min value has to be
-lesser than the Max value.
+[`max`](../api/datepicker#max)
+properties. Always the min value has to be
+lesser than the max value.
 
-The `Value` property depends
-on the Min/Max with respect to the [StrictMode](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDatePicker%601~StrictMode.html) property. For more information about StrictMode, refer to the [Strict Mode](./strict-mode) section from the documentation.
+When the min and max properties are configured and the selected date value is out-of-range or
+invalid, then the model value will be set to `out of range` date value or `null` respectively
+with highlighted `error` class to indicates the date is out of range or invalid.
 
-The following code allows selecting a
-date within the range from 7th to 27th in
+The value property depends on the min/max with respect to [`strictMode`](./strict-mode/) property.
+
+The below example allows selecting a
+date within the range from 7th to 27th day in
 a month.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="datepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html",
+es5Template="datepicker-range-template" %}
 
-<SfDatePicker TValue="DateTime?" Min='@MinDate' Max='@MaxDate' Value='@DateValue'></SfDatePicker>
+```typescript
 
-@code {
-    public DateTime MinDate {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,07);
-    public DateTime MaxDate {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27);
-    public DateTime? DateValue {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15);
-}
+import { DatePicker } from '@syncfusion/ej2-calendars';
+let today: Date = new Date();
+let currentYear: number = today.getFullYear();
+let currentMonth: number = today.getMonth();
+let currentDay: number = today.getDate();
+// creates a datepicker with min max property
+let datepickerObject: DatePicker = new DatePicker({
+    //sets the min.
+    min: new Date(currentYear, currentMonth, 7),
+    //sets the max.
+    max: new Date(currentYear, currentMonth, 27),
+    //sets the value.
+    value: new Date(new Date().setDate(14))
+});
+datepickerObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![datepicker](./images/date_range_01.png)
-
-When the Min and Max properties are configured and the selected date value is out-of-range or
-invalid, then the model value will be set to `out of range` date value or `null` respectively
-with highlighted `error` class to indicate the date is out of range or invalid.
-
-```csharp
-@using Syncfusion.Blazor.Calendars
-
-<SfDatePicker TValue="DateTime?" Min='@MinDate' Max='@MaxDate' Value='@DateValue'></SfDatePicker>
-
-@code {
-    public DateTime MinDate {get;set;} = new DateTime(DateTime.Now.Year,DateTime.Now.Month,07);
-    public DateTime MaxDate {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 27);
-    public DateTime? DateValue {get;set;} = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 28);
-}
-```
-
-The output will be as follows.
-
-![datepicker](./images/date_range_02.png)
-
-> If the value of `Min` or `Max` properties
-changed through code behind, you have to
-update the `Value` property to set within the
+> If the value of `min` or `max` properties
+changed through code behind, then you have to
+update the `value` property to set within the
 range.

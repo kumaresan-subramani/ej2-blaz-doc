@@ -1,19 +1,26 @@
 ---
-title: "WeekNumber"
+title: "How To"
 component: "Calendar"
-description: "Explains how to enable week number option in the calendar component to show the week number of a selected date."
+description: "Miscellaneous aspects of customizing the calendar"
 ---
 
-# Render the Calendar with WeekNumber
+# Render the Calendar with week numbers
 
-You can enable `WeekNumber` in the Calendar by using the [WeekNumber](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.CalendarBase%601~WeekNumber.html) property.
+You can enable `weekNumbers` in the Calendar by using the [`weekNumber`](../../api/calendar#weeknumber) property.
 
-```csharp
-@using Syncfusion.Blazor.Calendars
+{% tab template="calendar/getting-started" , sourceFiles="app.ts,index.html,styles.css"
+,es5Template="calendar-weeknumber-template" %}
 
-<SfCalendar TValue="DateTime?" WeekNumber=true></SfCalendar>
+```typescript
+
+import { Calendar } from '@syncfusion/ej2-calendars';
+//creates a calendar with weekNumber enabled
+let calendarObject: Calendar = new Calendar({
+    //sets the weekNumber
+    weekNumber: true
+});
+calendarObject.appendTo('#element');
+
 ```
 
-The output will be as follows.
-
-![calendar](../images/week_number.png)
+{% endtab %}

@@ -1,259 +1,246 @@
 ---
 title: "Globalization"
 component: "DateRangePicker"
-description: "Explains how to render date range picker with various culture and customize the localized text for static text present in components like a button text."
+description: "Learn about how to globalize the date range picker component and how to localize the culture related content."
 ---
 
 # Globalization
 
-Globalization is the combination of  adapting the control to various languages by means of parsing and formatting the date or number `Internationalization` and also by adding cultural specific customizations and translating the text `localization`.
+Globalization is the combination of internalization and localization. You can adapt the component to
+various languages by parsing and formatting the date or
+number (Internationalization), and also add culture specific customization and translation to the text
+(Localization).
 
-## Blazor server side
+By default, DateRangePicker date format, week, and month names are specific to the English culture. It utilizes the
+[`Essential JavaScript 2 Internationalization`](http://ej2.syncfusion.com/documentation/base/internationalization/)
+package to parse and format the date object based on the culture by using the official [`UNICODE CLDR`](http://cldr.unicode.org/)
+JSON data. It allows to load culture specific CLDR JSON data by using
+`loadCldr`
+method.
 
-Add `UseRequestLocalization` middle-ware in Configure method in **Startup.cs** file to get browser Culture Info.
+To use a different culture other than `English`, follow the below steps:
 
-Refer the following code to add configuration in Startup.cs file
+* Install the `CLDR-Data` package by using the below command (Installs the CLDR JSON data). To
+know more about CLDR-Data refer to the
+[`CLDR-Data`](http://cldr.unicode.org/index/cldr-spec/json) link.
 
-```csharp
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Localization;
+```cmd
+npm install cldr-data --save
+```
 
-namespace BlazorApplication
-{
-    public class Startup
-    {
-        ....
-        ....
+ Once the package is installed, you can find the culture
+specific JSON data under the location `\node_modules\cldr-data`.
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseRequestLocalization();
-            ....
-            ....
+* Import the installed CLDR JSON data into the `app.ts` file.
+To import JSON data, install the JSON plugin loader. Here, The SystemJS JSON plugin loader is used.
+
+```sh
+npm install systemjs-plugin-json --save-dev
+```
+
+* After installation, configure the `system.config.js` configuration settings as given below to map the
+`systemjs-plugin-json` loader.
+
+```typescript
+System.config({
+    paths: {
+        'npm:': './node_modules/',
+        'syncfusion:': 'npm:@syncfusion/'
+
+    },
+    map: {
+        app: 'app',
+
+        //Syncfusion packages mapping
+        "@syncfusion/ej2-base": "syncfusion:ej2-base/dist/ej2-base.umd.min.js",
+        "@syncfusion/ej2-inputs": "syncfusion:ej2-inputs/dist/ej2-inputs.umd.min.js",
+        "@syncfusion/ej2-popups": "syncfusion:ej2-popups/dist/ej2-popups.umd.min.js",
+        "@syncfusion/ej2-lists": "syncfusion:ej2-lists/dist/ej2-lists.umd.min.js",
+        "@syncfusion/ej2-data": "syncfusion:ej2-data/dist/ej2-data.umd.min.js",
+        "@syncfusion/ej2-buttons": "syncfusion:ej2-buttons/dist/ej2-buttons.umd.min.js",
+        "@syncfusion/ej2-splitbuttons": "syncfusion:ej2-splitbuttons/dist/ej2-splitbuttons.umd.min.js",
+        "@syncfusion/ej2-calendars": "syncfusion:ej2-calendars/dist/ej2-calendars.umd.min.js",
+        "cldr-data": 'npm:cldr-data',
+        "plugin-json": "npm:systemjs-plugin-json/json.js"
+    },
+    meta: {
+        '*.json': { loader: 'plugin-json' }
+    },
+    packages: {
+        'app': { main: 'app', defaultExtension: 'js' },
+        'cldr-data': { main: 'index.js', defaultExtension: 'js' }
+    }
+});
+
+System.import('app');
+
+```
+
+* Use the `loadCldr` method to load the culture specific CLDR JSON data from the installed location to `app.ts` file.
+
+* DateRangePicker displayed `Sunday` as the first day of week based on default culture ("en-US"). If you want to display the DateRangePicker with loaded culture's first day of week, you need to import `weekdata.json` file from the `cldr-data/suppemental` as given in the code example.
+
+```typescript
+declare var require: any;
+
+loadCldr(
+    require('cldr-data/main/de/numbers.json'),
+    require('cldr-data/main/de/ca-gregorian.json'),
+    require('cldr-data/main/de/numbers.json'),
+    require('cldr-data/main/de/timeZoneNames.json'),
+    require('cldr-data/supplemental/weekdata.json') // To load the culture based first day of week
+);
+```
+
+> The `Localization` library allows you to localize default text content of the DateRangePicker. The DateRangePicker component has static text for  **today** feature that can be changed to other cultures (Arabic, Deutsch, French, etc.) by defining the
+[`locale`](../api/daterangepicker#locale) value and translation object.
+
+Locale keywords |Text
+-----|-----
+placeholder | Hint to describe expected value in input element.
+startLabel | Label to represent the start date.
+endLabel | Label to represent the end date.
+applyText | Text present in the apply button.
+cancelText | Text present in the cancel button.
+selectedDays | Text to represent selected days.
+days | Text represents days.
+customRange | Text present in the custom range button in presets container.
+
+* Before changing to a culture other than `English`, ensure that locale text for the concerned culture is loaded through `load` method of
+[L10n](../api/base/l10n#load) class.
+
+```typescript
+
+//Load the L10n, loadCldr from ej2-base
+import { loadCldr, L10n } from '@syncfusion/ej2-base';
+
+//load the locale object to set the localized placeholder value
+L10n.load({
+    'de': {
+        'daterangepicker': { placeholder: 'Wählen Sie ein Datum aus' }
+    }
+});
+```
+
+* Set the culture by using the
+[`locale`](../api/daterangepicker#locale)
+property. In the following code example, the DateRangePicker is initialized
+in `German` culture with
+corresponding localized text.
+
+The following example demonstrates the DateRangePicker in `German` culture.
+
+{% tab template="daterangepicker/globalization", isDefaultActive = "true",sourceFiles="app.ts,index.html",es5Template="daterangepicker-globalization-template" %}
+
+```typescript
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+//Load the L10n, loadCldr from ej2-base
+import { loadCldr, L10n } from '@syncfusion/ej2-base';
+//load the CLDR data files.
+import * as numberingSystems from './numberingSystems.json';
+import * as gregorian from './ca-gregorian.json';
+import * as numbers from './numbers.json';
+import * as detimeZoneNames from './timeZoneNames.json';
+
+loadCldr(numberingSystems, gregorian, numbers, detimeZoneNames);
+L10n.load({
+    'de': {
+        'daterangepicker': {
+         placeholder:'Wählen Sie einen Bereich aus',
+         startLabel: 'Wählen Sie Startdatum',
+         endLabel: 'Wählen Sie Enddatum',
+         applyText: 'Sich bewerben',
+         cancelText: 'Stornieren',
+         selectedDays: 'Ausgewählte Tage',
+         days: 'Tage',
+         customRange: 'benutzerdefinierten Bereich'
         }
     }
-}
+});
+
+// creates the simple DateRangePicker component with de culture
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    // sets the locale property.
+    locale: 'de',
+    value: new Date(),
+});
+daterangeObject.appendTo('#element');
 ```
 
-The **Localization** library allows you to localize default text content. The DateRangePicker component has static text that can be changed to other cultures (Arabic, Deutsch, French, etc.).
-
-In the following examples, demonstrate how to enable **Localization** for DateRangePicker in server side Blazor samples. Here, we have used Resource file to translate the static text.
-
-The Resource file is an XML file which contains the strings(key and value pairs) that you want to translate into different language. You can also refer Localization [link](https://blazor.syncfusion.com/documentation/common/localization/) to know more about how to configure and use localization in the ASP.Net Core application framework.
-
-* Open the **Startup.cs** file and add the below configuration in the **ConfigureServices** function as follows.
-
-```csharp
-using Syncfusion.Blazor;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
-
-namespace BlazorApplication
-{
-    public class Startup
-    {
-        ....
-        ....
-        public void ConfigureServices(IServiceCollection services)
-        {
-            ....
-            ....
-            services.AddSyncfusionBlazor();
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                // define the list of cultures your app will support
-                var supportedCultures = new List<CultureInfo>()
-                {
-                    new CultureInfo("de")
-                };
-                // set the default culture
-                options.DefaultRequestCulture = new RequestCulture("de");
-                options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;
-                options.RequestCultureProviders = new List<IRequestCultureProvider>() {
-                 new QueryStringRequestCultureProvider() // Here, You can also use other localization provider
-                };
-            });
-            services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SampleLocalizer));
-        }
-    }
-}
-```
-
-* Then, write a **class** by inheriting **ISyncfusionStringLocalizer** interface and override the Manager property to get the resource file details from the application end.
-
-```csharp
-using Syncfusion.Blazor;
-
-namespace blazorCalendars
-{
-     public class SampleLocalizer : ISyncfusionStringLocalizer
-    {
-
-        public string Get(string key)
-        {
-            return this.Manager.GetString(key);
-        }
-
-        public System.Resources.ResourceManager Manager
-        {
-            get
-            {
-                return blazorCalendars.Resources.SyncfusionBlazorLocale.ResourceManager;
-            }
-        }
-    }
-}
-```
-
-* Add **.resx** file to Resource folder and enter the key value (Locale Keywords) in the **Name** column and the translated string in the Value column as follows.
-
-| **Name** | **Value (in Deutsch culture)** |
-| --- | --- |
-| DateRangePicker_ApplyText | Anwenden |
-| DateRangePicker_CancelText | Stornieren |
-| DateRangePicker_CustomRange | Benutzerdefinierten Bereich |
-| DateRangePicker_Days | Tage |
-| DateRangePicker_EndLabel | Endtermin |
-| DateRangePicker_Placeholder | Wählen Sie einen Datumsbereich |
-| DateRangePicker_SelectedDays | Ausgewählte Tage |
-| DateRangePicker_StartLabel | Anfangsdatum |
-
-* Finally, Specify the culture for DateRangePicker using `locale` property.
-
-```csharp
-@using Syncfusion.Blazor.Calendars
-
-<SfDateRangePicker Locale="de"></SfDateRangePicker>
-```
-
-## Blazor WebAssembly
-
-By default, the DateRangePicker week and month names are specific to the `American English` culture. It utilizes the
-`Blazor Internationalization` package to parse and format the date object based on the culture by using the official [UNICODE CLDR](http://cldr.unicode.org/) JSON data.
-
-The following steps explain how to render the DateRangePicker in German culture (‘de-DE’) in Blazor Web Assembly application.
-
-* Open the **program.cs** file and add the below configuration in the **Builder ConfigureServices** function as follows.
-
-```csharp
-using Syncfusion.Blazor;
-using Microsoft.AspNetCore.Builder;
-
-namespace WebAssemblyLocale
-{
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            ....
-            ....
-            builder.Services.Configure<RequestLocalizationOptions>(options =>
-            {
-                // Define the list of cultures your app will support
-                var supportedCultures = new List<System.Globalization.CultureInfo>()
-                {
-                    new System.Globalization.CultureInfo("en-US"),
-                    new System.Globalization.CultureInfo("de"),
-                };
-
-                // Set the default culture
-                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("de");
-
-                options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;
-                options.RequestCultureProviders = new List<Microsoft.AspNetCore.Localization.IRequestCultureProvider>() {
-                 new Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider()
-                };
-            });
-            ....
-            ....
-        }
-    }
-}
-```
-
-* Download the required locale packages to render the Blazor DateRangePicker component with specified locale.
-
-* To download the locale definition of Blazor components, use this [link](https://github.com/syncfusion/ej2-locale).
-
-* After downloading the `blazor-locale` package, copy the `blazor-locale` folder with required local definition file into `wwwroot` folder.
-
-* By default, the `blazor-locale` package contains the localized text for static text present in components like button text, placeholder, tooltip, and more.
-
-* Set the culture by using the `SetCulture` method.
-
-```csharp
-@using Syncfusion.Blazor.Calendars
-@inject HttpClient Http;
-
-<SfDateRangePicker Locale="de"></SfDateRangePicker>
-
-@code {
-    [Inject]
-    protected IJSRuntime JsRuntime { get; set; }
-    protected override async Task OnInitializedAsync()
-    {
-        this.JsRuntime.Sf().LoadLocaleData(await Http.GetJsonAsync<object>("blazor-locale/src/de.json")).SetCulture("de");
-    }
-}
-```
-
-The output will be as follows.
-
-![DateRangePicker](./images/de_culture.png)
-
-## Customize the localized text
-
-You can change the localized text of particular component by editing the `wwwroot/blazor-locale/src/{{locale name}}.json` file.
-
-[`wwwroot/blazor-locale/src/de.json`]
-
-```csharp
-{
-  "de": {
-    "daterangepicker": {
-        "placeholder": "Wählen Sie einen Bereich aus",
-        "startLabel": "Wählen Sie Startdatum",
-        "endLabel": "Wählen Sie Enddatum",
-        "applyText": "Sich bewerben",
-        "cancelText": "Stornieren",
-        "selectedDays": "Ausgewählte Tage",
-        "days": "Tage",
-        "customRange": "benutzerdefinierten Bereich"
-    }
-  }
-}
-```
-
-The output will be as follows.
-
-![DateRangePicker](./images/de_culture_02.png)
+{% endtab %}
 
 ## Right-To-Left
 
-The DateRangePicker supports RTL (right-to-left) functionality for languages like Hebrew and Hebrew to displays
-the text in the right-to-left direction. Use [EnableRtl](https://help.syncfusion.com/cr/aspnetcore-blazor/Syncfusion.Blazor~Syncfusion.Blazor.Calendars.SfDateRangePicker~EnableRtl.html)
+The DateRangePicker supports RTL (right-to-left) functionality for languages like Arabic and Hebrew to displays
+the text in the right-to-left direction. Use
+[`enableRtl`](../api/daterangepicker#enablertl)
 property to set the RTL direction.
+The following code example initialize the DateRangePicker component in `Hebrew` culture and
+also explains how to set the localized text to
+the placeholder using
+`load` method of
+[L10n](../api/base/l10n#load) class.
 
-The following code example initialize the DateRangePicker component in `Hebrew` culture.
+{% tab template="daterangepicker/rtl" , sourceFiles="app.ts,index.html",es5Template="daterangepicker-rtl-template" %}
 
-```csharp
-@using Syncfusion.Blazor.Calendars
-@inject HttpClient Http;
+```typescript
 
-<SfDateRangePicker Locale="ar" EnableRtl=true></SfDateRangePicker>
+import { loadCldr, L10n } from '@syncfusion/ej2-base';
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+import * as numberingSystems from './numberingSystems.json';
+import * as gregorian from './ca-gregorian.json';
+import * as numbers from './numbers.json';
+import * as hetimeZoneNames from './timeZoneNames.json';
 
-@code {
-    [Inject]
-    protected IJSRuntime JsRuntime { get; set; }
-    protected override async Task OnInitializedAsync()
-    {  
-        this.JsRuntime.Sf().LoadLocaleData(await Http.GetJsonAsync<object>("blazor-locale/src/ar.json")).SetCulture("ar");
+loadCldr(numberingSystems, gregorian, numbers, hetimeZoneNames);
+
+L10n.load({
+    'he': {
+        'daterangepicker': {
+            placeholder: 'בחר טווח'
+            startLabel: 'תווית התחלה',
+            endLabel: 'ח',
+            applyText: 'להחיל טקסט',
+            cancelText: 'בטל טקסט',
+            selectedDays: 'ימים נבחרים',
+            days: 'أימים',
+            customRange: 'טווח מותאם אישית'
+        }
     }
+});
+
+// creates the simple DateRangePicker component
+let daterangeobject: DateRangePicker = new DateRangePicker({
+    //sets the locale
+    locale: 'he',
+    //sets the enableRtl
+    enableRtl: true,
+});
+daterangeobject.appendTo('#element');
 ```
 
-The output will be as follows.
+{% endtab %}
 
-![DateRangePicker](./images/he_culture.png)
+## Customize the date format
+
+Representation of start and end date strings can be customized to required format by using [`format`](../api/daterangepicker#format) property. By default, the format is based on the culture.
+To know more about the date format standards, refer to the Internationalization Date Format section.
+In the following sample, the date strings are formatted to `yyyy-MM-dd` and in between the string "to" is set as a [`separator`](../api/daterangepicker#separator).
+
+{% tab template="daterangepicker/getting-started", isDefaultActive = "true", sourceFiles="app.ts,index.html",es5Template="daterangepicker-format-template" %}
+
+```typescript
+
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+// creates a daterangepicker with format property
+let daterangeObject: DateRangePicker = new DateRangePicker({
+    format:"yyyy-MM-dd",
+    separator: "to",
+    placeholder:"Select Range"
+
+});
+daterangeObject.appendTo('#element');
+
+```
+
+{% endtab %}
