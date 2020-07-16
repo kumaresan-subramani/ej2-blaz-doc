@@ -212,6 +212,13 @@ In the chart, the user can switch from single axis to multiple axes with the hel
 
 ![output](images/chart-option.png)
 
+## Show or hide legend
+
+In the chart, legend can be shown or hidden dynamically with the help of the built-in option available in the chart type drop-down menu.
+> By default, the legend is not be visible for the accumulation chart types like pie, doughnut, pyramid, and funnel. Users can enable or disable using the built-in checkbox option.
+
+![output](images/chart-legend.png)
+
 ## Events
 
 ### FetchReport
