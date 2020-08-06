@@ -1,6 +1,6 @@
 # Accessibility
 
-All the Syncfusion Blazor components follow the WAI-ARIA accessibility standard by default. This enables you to build accessible web applications, which are fully navigable by users with disabilities adn demo testing.
+All the Syncfusion Blazor components follow the WAI-ARIA accessibility standard by default. This enables you to build accessible web applications, which are fully navigable by users with disabilities adn demos testing.
 
 ## Keyboard navigation
 
